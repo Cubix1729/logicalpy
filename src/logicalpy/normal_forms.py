@@ -14,7 +14,7 @@ class DisjunctiveClause:
         """The clause's constructor
 
         Args:
-            *args (Formula): the literals of the disjunctive clause, each as a Formula
+            *literals (Formula): the literals of the disjunctive clause, each as a Formula
 
         Raises:
             ValueError: if any of the arguments given is not a literal (i.e. a proposition or its negation)
@@ -61,7 +61,7 @@ class ConjunctiveClause:
         """The clause's constructor
 
         Args:
-            *args (Formula): the literals of the disjunctive clause, each as a Formula
+            *literals (Formula): the literals of the disjunctive clause, each as a Formula
 
         Raises:
             ValueError: if any of the arguments given is not a literal (i.e. a proposition or its negation)
