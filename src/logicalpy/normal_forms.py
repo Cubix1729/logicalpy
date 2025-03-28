@@ -6,11 +6,11 @@ class DisjunctiveClause:
     """A class for representing a disjunctive clause
 
     Attributes:
-        disjuncts (tuple): the literals of the clause
+        literals (tuple): the literals of the clause
 
     """
 
-    def __init__(self, *args: Formula):
+    def __init__(self, *literals: Formula):
         """The clause's constructor
 
         Args:
@@ -20,10 +20,10 @@ class DisjunctiveClause:
             ValueError: if any of the arguments given is not a literal (i.e. a proposition or its negation)
 
         """
-        for arg in args:
-            if not arg.is_literal():
-                raise ValueError(f"Formula '{arg}' is not a literal")
-        self.literals = args
+        for literal in literals:
+            if not literal.is_literal():
+                raise ValueError(f"Formula '{literal}' is not a literal")
+        self.literals = literals
 
     def is_empty(self) -> bool:
         """Tests wether the clause is empty"""
@@ -50,14 +50,14 @@ class ConjunctiveClause:
     """A class for representing a conjunctive clause
 
     Attributes:
-        conjuncts (tuple): the literals of the clause
+        literals (tuple): the literals of the clause
 
     Note:
         Conjunctive clauses are less used than disjunctive clauses. This class is only used in DNF clausal results.
 
     """
 
-    def __init__(self, *args: Formula):
+    def __init__(self, *literals: Formula):
         """The clause's constructor
 
         Args:
@@ -67,10 +67,10 @@ class ConjunctiveClause:
             ValueError: if any of the arguments given is not a literal (i.e. a proposition or its negation)
 
         """
-        for arg in args:
-            if not arg.is_literal():
-                raise ValueError(f"Formula '{arg}' is not a literal")
-        self.literals = args
+        for literal in literals:
+            if not literal.is_literal():
+                raise ValueError(f"Formula '{literal}' is not a literal")
+        self.literals = literals
 
     def is_empty(self) -> bool:
         """Tests wether the clause is empty"""
@@ -94,7 +94,8 @@ class ConjunctiveClause:
 
 
 def to_nnf(formula: Formula) -> Formula:
-    """Converts a formula to negation normal form (NNF)
+    """Converts a formula to negation normal form (NNF), with no implications or bi-implications and 
+    all negations directly applied to propositions
 
     Args:
         formula (Formula): the formula to convert
@@ -120,7 +121,7 @@ def to_cnf(formula: Formula) -> Formula:
         (Formula): the resulting formula in CNF
 
     Note:
-        This function does not always return the canonical CNF form of the formula. Is instead uses syntactic rewriting
+        This function does not always return the canonical CNF form of the formula. It instead uses syntactic rewriting
         rules to convert a formula to CNF
 
     """
@@ -147,7 +148,7 @@ def to_dnf(formula: Formula) -> Formula:
         (Formula): the resulting formula in DNF
 
     Note:
-        This function does not always return the canonical DNF form of the formula. Is instead uses syntactic rewriting
+        This function does not always return the canonical DNF form of the formula. It instead uses syntactic rewriting
         rules to convert a formula to DNF
 
     """
@@ -179,7 +180,7 @@ def _find_conjuncts(formula) -> list:
 
 
 def to_clausal_cnf(formula: Formula) -> list[DisjunctiveClause]:
-    """Converts a formula to conjunctive normal form (CNF) like to_cnf, but as a list of disjunctive clauses
+    """Converts a formula to conjunctive normal form (CNF) like `to_cnf`, but as a list of disjunctive clauses
 
     Args:
         formula (Formula): the formula to convert

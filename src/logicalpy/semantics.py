@@ -1,6 +1,6 @@
 from .base import Formula
 from itertools import product
-from typing import Optional, Iterable
+from typing import Optional
 
 
 def is_tautology(formula: Formula) -> bool:
@@ -71,11 +71,11 @@ def are_equivalent(formula_1: Formula, formula_2: Formula) -> bool:
     return True
 
 
-def are_consistent(formulae: Iterable[Formula]) -> bool:
+def are_consistent(*formulae: Formula) -> bool:
     """Tests wether several formulae are consistent
 
     Args:
-        formulae (Iterable[Formula]): the formulae to test for consistency
+        *formulae (Formula): the formulae to test for consistency
 
     Returns:
         (bool): True, if the formulae are consistent, and False otherwise
@@ -129,8 +129,8 @@ def all_satisfying_valuations(formula: Formula) -> list[dict[str, bool]]:
         formula: the formula to test for valuations
 
     Returns:
-        (list[dict[str, bool]]): the list of all the valuations that satisfy the formula given
-        Each valuation is dictionary mapping each proposition name to a truth value (bool)
+        (list[dict[str, bool]]): the list of all the valuations that satisfy the formula given. 
+            Each valuation is dictionary mapping each proposition name to a truth value (bool)
 
     """
 

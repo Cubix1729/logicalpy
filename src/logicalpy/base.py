@@ -217,8 +217,8 @@ class BiImplies(_TwoPlaceConnective):
     """A class representing logical bi-implication (also called biconditional)
 
     Attributes:
-        a: the left hand part of the equivalence
-        b: the right hand part of the equivalence
+        a: the left hand part of the biconditional
+        b: the right hand part of the biconditional
     """
 
     CONNECTIVE_SYMBOL = "↔"
@@ -358,7 +358,7 @@ class Formula:
         return False
 
     def is_proposition(self) -> bool:
-        """Tests wether the formula is only a proposition/atom"""
+        """Tests wether the formula is only a proposition"""
         return isinstance(self.formula, Proposition)
 
     def is_negation(self) -> bool:
