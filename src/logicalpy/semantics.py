@@ -1,6 +1,6 @@
 from .base import Formula
 from itertools import product
-from typing import Optional
+from typing import Optional, Iterable
 
 
 def is_tautology(formula: Formula) -> bool:
@@ -56,7 +56,6 @@ def are_equivalent(formula_1: Formula, formula_2: Formula) -> bool:
 
     Returns:
         (bool): True if the two formulae given are semantically equivalent, and False otherwise
-        Formulae with different propositions are treated with one truth table taking all the propositions of both formulae into account.
 
     """
 
@@ -107,7 +106,7 @@ def one_satisfying_valuation(formula: Formula) -> Optional[dict[str, bool]]:
         formula: the formula to test with valuations
 
     Returns:
-        (Optional[dict[str, bool]]): a valuation that satisfies the formula if it exists, otherwise, None
+        (Optional[dict[str, bool]]): a valuation that satisfies the formula if it exists, and None otherwise
 
     """
 
@@ -129,7 +128,7 @@ def all_satisfying_valuations(formula: Formula) -> list[dict[str, bool]]:
         formula: the formula to test for valuations
 
     Returns:
-        (list[dict[str, bool]]): the list of all the valuations that satisfy the formula given. 
+        (list[dict[str, bool]]): the list of all the valuations that satisfy the formula given.
             Each valuation is dictionary mapping each proposition name to a truth value (bool)
 
     """

@@ -94,7 +94,7 @@ class ConjunctiveClause:
 
 
 def to_nnf(formula: Formula) -> Formula:
-    """Converts a formula to negation normal form (NNF), with no implications or bi-implications and 
+    """Converts a formula to negation normal form (NNF), with no implications or bi-implications and
     all negations directly applied to propositions
 
     Args:

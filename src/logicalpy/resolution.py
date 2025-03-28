@@ -179,11 +179,11 @@ class ResolutionProver:
         proof_str = f"Resolution proof for argument {", ".join([str(premise) for premise in self.premises])} ∴ {self.conclusion}\n\n"
         line_num = 1
 
-        for clause in self._all_clauses[:self._premises_end_index]:
+        for clause in self._all_clauses[: self._premises_end_index]:
             proof_str += f"{line_num}. {clause}".ljust(30) + "Premise clause\n"
             line_num += 1
-        
-        for clause in self._all_clauses[self._premises_end_index:]:
+
+        for clause in self._all_clauses[self._premises_end_index :]:
             proof_str += f"{line_num}. {clause}".ljust(30) + "Negated conclusion clause\n"
             line_num += 1
 
