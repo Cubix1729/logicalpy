@@ -9,6 +9,8 @@ class Proposition:
     """
 
     def __init__(self, name: str):
+        if name == "":
+            raise ValueError("a proposition name cannot be ''")
         self.name = name
 
     def __str__(self) -> str:
@@ -18,6 +20,9 @@ class Proposition:
         if isinstance(other, Proposition):
             return self.name == other.name
         return False
+    
+    def as_latex(self) -> str:
+        return self.name
 
     def propositions(self) -> set:
         return {self.name}
@@ -68,6 +73,9 @@ class Not:
         if isinstance(other, Not):
             return self.a == other.a
         return False
+    
+    def as_latex(self) -> str:
+        return r"\neg " + self.a.as_latex()
 
     def propositions(self) -> set[str]:
         return self.a.propositions()
@@ -111,6 +119,7 @@ class _TwoPlaceConnective:
     """A general class for all two places logical connectives (not meant for actual use)"""
 
     CONNECTIVE_SYMBOL = None  # not defined in the base class
+    LATEX_SYMBOL = None  # same
 
     def __init__(self, a, b):
         self.a = a
@@ -123,6 +132,9 @@ class _TwoPlaceConnective:
         if isinstance(other, type(self)):
             return self.a == other.a and self.b == other.b
         return False
+    
+    def as_latex(self) -> str:
+        return f"({self.a.as_latex()} {self.LATEX_SYMBOL} {self.b.as_latex()})"
 
     def propositions(self) -> set[str]:
         return self.a.propositions().union(self.b.propositions())
@@ -161,6 +173,7 @@ class And(_TwoPlaceConnective):
     """
 
     CONNECTIVE_SYMBOL = "∧"
+    LATEX_SYMBOL = r"\land"
 
     def is_satisfied(self, valuation: dict[str, bool]) -> bool:
         return self.a.is_satisfied(valuation) and self.b.is_satisfied(valuation)
@@ -183,6 +196,7 @@ class Or(_TwoPlaceConnective):
     """
 
     CONNECTIVE_SYMBOL = "∨"
+    LATEX_SYMBOL = r"\lor"
 
     def is_satisfied(self, valuation: dict[str, bool]) -> bool:
         return self.a.is_satisfied(valuation) or self.b.is_satisfied(valuation)
@@ -205,6 +219,7 @@ class Implies(_TwoPlaceConnective):
     """
 
     CONNECTIVE_SYMBOL = "→"
+    LATEX_SYMBOL = r"\to"
 
     def is_satisfied(self, valuation: dict[str, bool]) -> bool:
         return (not self.a.is_satisfied(valuation)) or self.b.is_satisfied(valuation)
@@ -222,6 +237,7 @@ class BiImplies(_TwoPlaceConnective):
     """
 
     CONNECTIVE_SYMBOL = "↔"
+    LATEX_SYMBOL = r"\leftrightarrow"
 
     def is_satisfied(self, valuation: dict[str, bool]) -> bool:
         return self.a.is_satisfied(valuation) == self.b.is_satisfied(valuation)
@@ -234,14 +250,14 @@ class BiImplies(_TwoPlaceConnective):
 
 propositional_grammar = r"""
 start: formula
-PROP: /[A-Za-z]/
+PROP: /[A-Za-z]+[0-9]*/
 
 formula: PROP                                  -> proposition
        | formula ("<->" | "↔" | "⇔") formula  -> biconditional
        | formula ("->" | "⇒" | "→") formula   -> implication
        | formula ("v" | "∨" | "|") formula     -> disjunction
        | formula ("&" | "∧") formula           -> conjunction
-       | ("~" | "¬" | "-") formula             -> negation
+       | ("~" | "¬") formula             -> negation
        | "(" formula ")"
 
 %import common.WS
@@ -313,6 +329,12 @@ class Formula:
 
     def __hash__(self) -> int:
         return hash(str(self))
+
+    def as_latex(self) -> str:
+        formula_latex = self.formula.as_latex()
+        if formula_latex.startswith("(") and formula_latex.endswith(")"):  # if there are outer parenthesis, we remove them
+            return "$" + formula_latex[1:-1] + "$"
+        return "$" + formula_latex + "$"
 
     @classmethod
     def from_string(cls, formula_str: str):

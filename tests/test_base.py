@@ -53,11 +53,22 @@ class TestFormula(unittest.TestCase):
             "(Q & P) -> (Q <-> P)": Formula(Implies(And(Q, P), BiImplies(Q, P))),
             "(Q ∧ P) → (Q ↔ P)": Formula(Implies(And(Q, P), BiImplies(Q, P))),
             "(P ⇒ Q) ⇒ (P ⇔ Q)": Formula(Implies(Implies(P, Q), BiImplies(P, Q))),
-            "---P": Formula(Not(Not(Not(P)))),
+            "~~~P": Formula(Not(Not(Not(P)))),
             "¬Q v P": Formula(Or(Not(Q), P)),
         }
         for test_str, expected_formula in formulae_to_parse.items():
             self.assertEqual(Formula.from_string(test_str), expected_formula)
+        
+    def test_latex(self):
+        formulae_to_test = (
+            ("(P v Q) & ~P", r"$(P \lor Q) \land \neg P$"),
+            ("P -> (Q <-> P)", r"$P \to (Q \leftrightarrow P)$"),
+        )
+        for formula_str, expected in formulae_to_test:
+            self.assertEqual(
+                Formula.from_string(formula_str).as_latex(),
+                expected
+            )
 
     def test_main_connectives(self):
         self.assertEqual(Formula.from_string("P").is_proposition(), True)
