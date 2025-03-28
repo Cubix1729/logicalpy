@@ -58,17 +58,14 @@ class TestFormula(unittest.TestCase):
         }
         for test_str, expected_formula in formulae_to_parse.items():
             self.assertEqual(Formula.from_string(test_str), expected_formula)
-        
+
     def test_latex(self):
         formulae_to_test = (
             ("(P v Q) & ~P", r"$(P \lor Q) \land \neg P$"),
             ("P -> (Q <-> P)", r"$P \to (Q \leftrightarrow P)$"),
         )
         for formula_str, expected in formulae_to_test:
-            self.assertEqual(
-                Formula.from_string(formula_str).as_latex(),
-                expected
-            )
+            self.assertEqual(Formula.from_string(formula_str).as_latex(), expected)
 
     def test_main_connectives(self):
         self.assertEqual(Formula.from_string("P").is_proposition(), True)

@@ -20,7 +20,7 @@ class Proposition:
         if isinstance(other, Proposition):
             return self.name == other.name
         return False
-    
+
     def as_latex(self) -> str:
         return self.name
 
@@ -73,7 +73,7 @@ class Not:
         if isinstance(other, Not):
             return self.a == other.a
         return False
-    
+
     def as_latex(self) -> str:
         return r"\neg " + self.a.as_latex()
 
@@ -132,7 +132,7 @@ class _TwoPlaceConnective:
         if isinstance(other, type(self)):
             return self.a == other.a and self.b == other.b
         return False
-    
+
     def as_latex(self) -> str:
         return f"({self.a.as_latex()} {self.LATEX_SYMBOL} {self.b.as_latex()})"
 
@@ -331,8 +331,16 @@ class Formula:
         return hash(str(self))
 
     def as_latex(self) -> str:
+        """Renders the formula as LaTex code
+
+        Returns:
+            (str): the LaTex representation of the formula, as inline math
+
+        """
         formula_latex = self.formula.as_latex()
-        if formula_latex.startswith("(") and formula_latex.endswith(")"):  # if there are outer parenthesis, we remove them
+        if formula_latex.startswith("(") and formula_latex.endswith(
+            ")"
+        ):  # if there are outer parenthesis, we remove them
             return "$" + formula_latex[1:-1] + "$"
         return "$" + formula_latex + "$"
 
