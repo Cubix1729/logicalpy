@@ -34,7 +34,7 @@ class Proposition:
     def __rshift__(self, other):
         return Implies(self, other)
 
-    def __neg__(self):
+    def __invert__(self):
         return Not(self)
 
     def _eliminate_conditionals(self):
@@ -84,7 +84,7 @@ class Not:
     def __rshift__(self, other):
         return Implies(self, other)
 
-    def __neg__(self):
+    def __invert__(self):
         return Not(self)
 
     def _eliminate_conditionals(self):
@@ -136,7 +136,7 @@ class _TwoPlaceConnective:
     def __rshift__(self, other):
         return Implies(self, other)
 
-    def __neg__(self):
+    def __invert__(self):
         return Not(self)
 
     def _eliminate_conditionals(self):

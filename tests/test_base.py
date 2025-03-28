@@ -13,10 +13,10 @@ class TestFormula(unittest.TestCase):
             Formula(Implies(And(Or(Proposition("P"), Proposition("Q")), Not(Proposition("Q"))), Proposition("P"))),
         )
 
-    def test_dunder_methods(self):
+    def test_overloaded_operators(self):
         P = Proposition("P")
         Q = Proposition("Q")
-        self.assertEqual(Formula(Implies(And(Or(P, Q), Not(Q)), P)), Formula(((P | Q) & (-Q)) >> P))
+        self.assertEqual(Formula(Implies(And(Or(P, Q), Not(Q)), P)), Formula(((P | Q) & (~Q)) >> P))
 
     def test_str(self):
         P = Proposition("P")
