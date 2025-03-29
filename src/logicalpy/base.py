@@ -28,7 +28,10 @@ class Proposition:
         return {self.name}
 
     def is_satisfied(self, valuation: dict[str, bool]) -> bool:
-        return valuation[self.name]
+        try:
+            return valuation[self.name]
+        except KeyError:
+            raise ValueError(f"proposition '{self.name}' is not associated with a value")
 
     def __and__(self, other):
         return And(self, other)
@@ -374,6 +377,9 @@ class Formula:
 
         Returns:
             (bool): True is the formula is satisfied by the truth valuation given, and False otherwise
+
+        Raises:
+            ValueError: if the truth value of one of the formula's propositions isn't precised in the valuation given
 
         """
         return self.formula.is_satisfied(valuation)
