@@ -70,14 +70,14 @@ def are_equivalent(formula_1: Formula, formula_2: Formula) -> bool:
     return True
 
 
-def are_consistent(*formulae: Formula) -> bool:
-    """Tests wether several formulae are consistent
+def are_jointly_satisfiable(*formulae: Formula) -> bool:
+    """Tests wether several formulae are jointly satisfiable
 
     Args:
-        *formulae (Formula): the formulae to test for consistency
+        *formulae (Formula): the formulae to test for satisfiability
 
     Returns:
-        (bool): True, if the formulae are consistent, and False otherwise
+        (bool): True, if the formulae are satisfiable, and False otherwise
 
     Raises:
         ValueError: if one or less formulae are given
