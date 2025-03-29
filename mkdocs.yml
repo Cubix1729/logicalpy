@@ -1,4 +1,4 @@
-site_name: My Docs
+site_name: LogicalPy Docs
 
 theme:
   name: material
@@ -31,15 +31,18 @@ theme:
         name: Switch to system preference
 
 nav:
-  - index.md
+  - Home: index.md
   - Usage:
     - Constructing Formulae: usage/constructing-formulae.md
-  - API Reference: autoapi/
+    - Using Formuae: usage/using-formulae.md
+    - Semantic Functions: usage/semantic-functions.md
+  - API Reference: api-reference/
 
 plugins:
   - search
   - mkdocs-autoapi:
       autoapi_add_nav_entry: False
+      autoapi_root: api-reference
       autoapi_dir: src
   - mkdocstrings:
       handlers:
@@ -47,3 +50,11 @@ plugins:
           paths:
             - src
 
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
+markdown_extensions:
+  - pymdownx.superfences
+  - pymdownx.arithmatex:
+      generic: true
