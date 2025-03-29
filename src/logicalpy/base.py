@@ -297,6 +297,7 @@ class Formula:
         formula: the formula described (can be an instance of any of the base connective classes)
 
     Examples:
+        >>> from logicalpy import Proposition, Or, Not, Formula
         >>> P = Proposition("P")
         >>> test_formula = Formula(Or(P, Not(P)))
         >>> str(test_formula)
