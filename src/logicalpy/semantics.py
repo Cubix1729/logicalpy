@@ -147,7 +147,7 @@ def all_satisfying_valuations(formula: Formula) -> list[dict[str, bool]]:
 
 
 def is_valid_argument(premises: Iterable[Formula], conclusion: Formula) -> bool:
-    """Tests the (semantic) validity of an argument, defined by the given premises and conclusion
+    """Tests wether an argument is (semantically) valid, i.e. wether the premises given entail the conclusion given
 
     Args:
         premises (Iterable[Formula]): the premises of the argument
