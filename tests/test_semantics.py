@@ -48,7 +48,7 @@ class TestSemantics(unittest.TestCase):
                 are_equivalent(Formula.from_string(formula_str_1), Formula.from_string(formula_str_2)), expected
             )
 
-    def test_consistency(self):
+    def test_joint_satisfiability(self):
         formulae_to_test = (
             (("P", "P -> R", "R -> Q"), True),
             (("P", "(~P) v Q", "~Q"), False),
@@ -58,7 +58,7 @@ class TestSemantics(unittest.TestCase):
         )
 
         for formulae, expected in formulae_to_test:
-            self.assertIs(are_consistent([Formula.from_string(formula) for formula in formulae]), expected)
+            self.assertIs(are_jointly_satisfiable(*[Formula.from_string(formula) for formula in formulae]), expected)
 
     def test_one_satisfying_valuation(self):
         formulae_to_test = ("P -> Q", "P v ((~B) & (T -> E))", "~P v P", "(~Q) & Q")
