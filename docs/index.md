@@ -19,6 +19,12 @@ With pip:
 pip install logicalpy
 ```
 
+## Usage
+
+For getting started, see the usage section.
+
+For a complete project reference, see the API Reference
+
 ## License
 
 This project is licensed under the MIT license.

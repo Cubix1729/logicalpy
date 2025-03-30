@@ -8,6 +8,7 @@ theme:
   features:
     - content.code.copy
     - navigation.footer
+    - navigation.expand
 
   palette:
     # Palette toggle for automatic mode

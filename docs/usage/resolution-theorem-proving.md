@@ -9,6 +9,7 @@ The class `ResolutionProver` is the class used for automated resolution refutati
 Its constructor takes the premises of the argument as an iterable containing `Formula` objects, and
 and the conclusion to prove as a `Formula` as well.
 The `prove()` method returns (a tuple containing) two things:
+
  - Wether a refutation was found from the premises and the negated conclusion
  - The full resolution proof as a `str`
 

@@ -52,8 +52,8 @@ P ∨ (¬Q ∧ ¬P)
 
 The `normal_forms` sub-module also contains classes representing conjunctive and disjunctive clauses.
 The CNF and DNF can be found in terms of clauses with the `to_clausal_cnf()` and `to_clausal_dnf()` functions.
-With `to_cnf` and `to_dnf`, the resulting normal forms are `Formula` instances, so disjunction and conjunction
-are represented as binary operators, but with `to_clausal_cnf` and `to_clausal_dnf`, the results are lists
+With `to_cnf()` and `to_dnf()`, the resulting normal forms are `Formula` instances, so disjunction and conjunction
+are represented as binary operators, but with `to_clausal_cnf()` and `to_clausal_dnf()`, the results are lists
 of clauses. Note that the resulting clauses aren't simplified afterhand.
 
 <br>
