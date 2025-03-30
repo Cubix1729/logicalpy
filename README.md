@@ -11,8 +11,11 @@ The main features include:
  - The conversion to normal forms (NNF, DNF, DNF)
  - Automated theorem proving with the resolution procedure
 
+For the complete documentation, see [https://cubix1729.github.io/logicalpy/](https://cubix1729.github.io/logicalpy/).
+
 ## Installation
 
+With pip:
 ```shell
 pip install logicalpy
 ```

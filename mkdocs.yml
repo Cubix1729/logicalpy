@@ -1,4 +1,6 @@
 site_name: LogicalPy Docs
+repo_url: https://github.com/Cubix1729/logicalpy
+repo_name: Cubix1729/logicalpy
 
 theme:
   name: material

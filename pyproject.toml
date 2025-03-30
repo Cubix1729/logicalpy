@@ -19,3 +19,7 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
 ]
+
+[project.urls]
+Homepage = "https://github.com/Cubix1729/logicalpy"
+Documentation = "https://cubix1729.github.io/logicalpy/"
