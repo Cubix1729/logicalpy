@@ -36,6 +36,8 @@ nav:
     - Constructing Formulae: usage/constructing-formulae.md
     - Using Formuae: usage/using-formulae.md
     - Semantic Functions: usage/semantic-functions.md
+    - Normal Forms: usage/normal-forms.md
+    - Resolution Theorem Proving: usage/resolution-theorem-proving.md
   - API Reference: api-reference/
 
 plugins:

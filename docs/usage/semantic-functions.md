@@ -27,4 +27,6 @@ True
 False
 ```
 
-For a complete view of the `semantics` sub-module, see the [corresponding API reference](../api-reference/logicalpy/semantics.md).
+<br>
+
+For a complete reference of the `semantics` sub-module, see the [corresponding API reference](../api-reference/logicalpy/semantics.md).
