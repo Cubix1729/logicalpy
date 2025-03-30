@@ -1516,7 +1516,7 @@ Each valuation is dictionary mapping each proposition name to a truth value (boo
 
     <div class="doc doc-contents ">
 
-        <p>Tests the (semantic) validity of an argument, defined by the given premises and conclusion</p>
+        <p>Tests wether an argument is (semantically) valid, i.e. wether the premises given entail the conclusion given</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -1627,7 +1627,7 @@ Each valuation is dictionary mapping each proposition name to a truth value (boo
 <span class="normal">182</span>
 <span class="normal">183</span>
 <span class="normal">184</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">is_valid_argument</span><span class="p">(</span><span class="n">premises</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Formula</span><span class="p">],</span> <span class="n">conclusion</span><span class="p">:</span> <span class="n">Formula</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tests the (semantic) validity of an argument, defined by the given premises and conclusion</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tests wether an argument is (semantically) valid, i.e. wether the premises given entail the conclusion given</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        premises (Iterable[Formula]): the premises of the argument</span>
