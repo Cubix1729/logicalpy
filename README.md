@@ -1,7 +1,7 @@
 # LogicalPy
 
 [![PyPi version](https://badgen.net/pypi/v/logicalpy/)](https://pypi.org/project/logicalpy)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License](https://img.shields.io/github/license/Cubix1729/logicalpy)](https://github.com/Cubix1729/logicalpy/blob/master/LICENSE)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 LogicalPy is a Python library providing basic functionalities for manipulating propositional logic.
@@ -20,9 +20,14 @@ For the complete documentation, see [https://cubix1729.github.io/logicalpy/](htt
 ## Installation
 
 With pip:
-```shell
+```
 pip install logicalpy
 ```
+
+## Contributing
+
+If you want to contribute to this (small) project, you can [open an issue](https://github.com/Cubix1729/logicalpy/issues)
+to report a bug or request a feature, or [make a pull request](https://github.com/Cubix1729/logicalpy/pulls).
 
 ## License
 
