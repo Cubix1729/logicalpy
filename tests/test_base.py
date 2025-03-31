@@ -23,6 +23,10 @@ class TestFormula(unittest.TestCase):
         Q = Proposition("Q")
         self.assertEqual(str(Formula(Implies(And(Or(P, Q), Not(Q)), P))), "((P ∨ Q) ∧ ¬Q) → P")
 
+    def test_repr(self):
+        P = Proposition("P")
+        self.assertEqual(repr(Formula(Or(And(P, P), P))), "Formula(Or(And(Proposition('P'), Proposition('P')), Proposition('P')))")
+
     def test_propositions(self):
         P = Proposition("P")
         Q = Proposition("Q")

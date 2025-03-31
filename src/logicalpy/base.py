@@ -21,6 +21,9 @@ class Proposition:
             return self.name == other.name
         return False
 
+    def __repr__(self) -> str:
+        return f"Proposition('{self.name}')"
+
     def as_latex(self) -> str:
         return self.name
 
@@ -76,6 +79,9 @@ class Not:
         if isinstance(other, Not):
             return self.a == other.a
         return False
+
+    def __repr__(self) -> str:
+        return f"Not({repr(self.a)})"
 
     def as_latex(self) -> str:
         return r"\neg " + self.a.as_latex()
@@ -135,6 +141,9 @@ class _TwoPlaceConnective:
         if isinstance(other, type(self)):
             return self.a == other.a and self.b == other.b
         return False
+
+    def __repr__(self) -> str:
+        return type(self).__name__ + f"({repr(self.a)}, {repr(self.b)})"
 
     def as_latex(self) -> str:
         return f"({self.a.as_latex()} {self.LATEX_SYMBOL} {self.b.as_latex()})"
@@ -330,6 +339,9 @@ class Formula:
         if isinstance(other, Formula):
             return self.formula == other.formula
         return False
+
+    def __repr__(self) -> str:
+        return f"Formula({repr(self.formula)})"
 
     def __hash__(self) -> int:
         return hash(str(self))
