@@ -26,7 +26,7 @@ class DisjunctiveClause:
         self.literals = literals
 
     def is_empty(self) -> bool:
-        """Tests wether the clause is empty"""
+        """Tests whether the clause is empty"""
         return len(self.literals) == 0
 
     def __str__(self):
@@ -73,7 +73,7 @@ class ConjunctiveClause:
         self.literals = literals
 
     def is_empty(self) -> bool:
-        """Tests wether the clause is empty"""
+        """Tests whether the clause is empty"""
         return len(self.literals) == 0
 
     def __str__(self):

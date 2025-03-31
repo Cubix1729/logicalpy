@@ -6,7 +6,7 @@ import time
 
 
 def are_complementary_literals(literal_1: Formula, literal_2: Formula) -> bool:
-    """A function to test wether two literals are complementary
+    """A function to test whether two literals are complementary
 
     Args:
         literal_1 (Formula): the first literal
@@ -170,7 +170,7 @@ class ResolutionProver:
         """Solves the goal given to the constructor by refutation, with the resolution procedure
 
         Returns:
-            (bool): wether a refutation was found from the negated conclusion and the premises, i.e. wether the conclusion is valid given the premises
+            (bool): whether a refutation was found from the negated conclusion and the premises, i.e. whether the conclusion is valid given the premises
             (str): the full refutation proof as text
 
         """

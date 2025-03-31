@@ -371,7 +371,7 @@ class Formula:
         return self.formula.propositions()
 
     def is_satisfied(self, valuation: dict[str, bool]) -> bool:
-        """Tests wether the formula is satisfied by the truth valuation given
+        """Tests whether the formula is satisfied by the truth valuation given
 
         Args:
             valuation (dict[str, bool]): a dictionary associating each proposition name (str) with a truth value (bool)
@@ -386,7 +386,7 @@ class Formula:
         return self.formula.is_satisfied(valuation)
 
     def is_literal(self) -> bool:
-        """Tests wether the formula is a literal, i.e. a proposition or its negation"""
+        """Tests whether the formula is a literal, i.e. a proposition or its negation"""
         if isinstance(self.formula, Proposition):
             return True
         elif isinstance(self.formula, Not):
@@ -395,27 +395,27 @@ class Formula:
         return False
 
     def is_proposition(self) -> bool:
-        """Tests wether the formula is only a proposition"""
+        """Tests whether the formula is only a proposition"""
         return isinstance(self.formula, Proposition)
 
     def is_negation(self) -> bool:
-        """Tests wether the formula's main connective is a negation"""
+        """Tests whether the formula's main connective is a negation"""
         return isinstance(self.formula, Not)
 
     def is_conjunction(self) -> bool:
-        """Tests wether the formula's main connective is a conjunction"""
+        """Tests whether the formula's main connective is a conjunction"""
         return isinstance(self.formula, And)
 
     def is_disjunction(self) -> bool:
-        """Tests wether the formula's main connective is a disjunction"""
+        """Tests whether the formula's main connective is a disjunction"""
         return isinstance(self.formula, Or)
 
     def is_implication(self) -> bool:
-        """Tests wether the formula's main connective is an implication"""
+        """Tests whether the formula's main connective is an implication"""
         return isinstance(self.formula, Implies)
 
     def is_bi_implication(self) -> bool:
-        """Tests wether the formula's main connective is a bi-implication"""
+        """Tests whether the formula's main connective is a bi-implication"""
         return isinstance(self.formula, BiImplies)
 
     def _eliminate_conditionals(self):

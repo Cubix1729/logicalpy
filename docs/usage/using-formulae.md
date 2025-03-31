@@ -18,7 +18,7 @@ The above LaTex would render as follow: $(P \to (\neg P \land P)) \lor Q$
 
 `Formula` objects can be tested with a particular valuation, with the `is_satisfied()` method. This method takes
 a valuation as a `dict` associating each proposition name (`str`) with a truth value (`bool`) and returns
-wether the `Formula` is satisfied by the valuation.
+whether the `Formula` is satisfied by the valuation.
 Example:
 
 ```python

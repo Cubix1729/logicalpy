@@ -4,7 +4,7 @@ from typing import Optional, Iterable
 
 
 def is_tautology(formula: Formula) -> bool:
-    """Tests wether a formula is a tautology
+    """Tests whether a formula is a tautology
 
     Args:
         formula (Formula): the formula to test
@@ -26,7 +26,7 @@ def is_tautology(formula: Formula) -> bool:
 
 
 def is_satisfiable(formula: Formula) -> bool:
-    """Tests wether a formula is satisfiable
+    """Tests whether a formula is satisfiable
 
     Args:
         formula (Formula): the formula to test
@@ -48,7 +48,7 @@ def is_satisfiable(formula: Formula) -> bool:
 
 
 def are_equivalent(formula_1: Formula, formula_2: Formula) -> bool:
-    """Tests wether two formulae are (semantically) equivalent
+    """Tests whether two formulae are (semantically) equivalent
 
     Args:
         formula_1: the first formula to test
@@ -71,7 +71,7 @@ def are_equivalent(formula_1: Formula, formula_2: Formula) -> bool:
 
 
 def are_jointly_satisfiable(*formulae: Formula) -> bool:
-    """Tests wether several formulae are jointly satisfiable
+    """Tests whether several formulae are jointly satisfiable
 
     Args:
         *formulae (Formula): the formulae to test for satisfiability
@@ -147,7 +147,7 @@ def all_satisfying_valuations(formula: Formula) -> list[dict[str, bool]]:
 
 
 def is_valid_argument(premises: Iterable[Formula], conclusion: Formula) -> bool:
-    """Tests wether an argument is (semantically) valid, i.e. wether the premises given entail the conclusion given
+    """Tests whether an argument is (semantically) valid, i.e. whether the premises given entail the conclusion given
 
     Args:
         premises (Iterable[Formula]): the premises of the argument
