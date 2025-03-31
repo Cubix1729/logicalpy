@@ -784,10 +784,10 @@ The normal forms found are not canonical forms. Instead of using truth tables, t
 </code></pre></div>
 <h2 id="clausal-representations-of-normal-forms">Clausal representations of normal forms</h2>
 <p>The <code>normal_forms</code> sub-module also contains classes representing conjunctive and disjunctive clauses.
-The CNF and DNF can be found in terms of clauses with the <code>to_clausal_cnf()</code> and <code>to_clausal_dnf()</code> functions.
+The CNF and DNF forms can be found in terms of clauses with the <code>to_clausal_cnf()</code> and <code>to_clausal_dnf()</code> functions.
 With <code>to_cnf()</code> and <code>to_dnf()</code>, the resulting normal forms are <code>Formula</code> instances, so disjunction and conjunction
 are represented as binary operators, but with <code>to_clausal_cnf()</code> and <code>to_clausal_dnf()</code>, the results are lists
-of clauses. Note that the resulting clauses aren't simplified afterhand.</p>
+of clauses. Note that the resulting clauses aren't simplified.</p>
 <p><br></p>
 <p>For a complete reference of the <code>normal_forms</code> sub-module, see the <a href="../../api-reference/logicalpy/normal_forms/">corresponding API reference</a>.</p>
 

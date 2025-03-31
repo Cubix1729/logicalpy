@@ -1001,7 +1001,7 @@ Each valuation is dictionary mapping each proposition name to a truth value (boo
 
     <div class="doc doc-contents ">
 
-        <p>Tests wether two formulae are (semantically) equivalent</p>
+        <p>Tests whether two formulae are (semantically) equivalent</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -1097,7 +1097,7 @@ Each valuation is dictionary mapping each proposition name to a truth value (boo
 <span class="normal">68</span>
 <span class="normal">69</span>
 <span class="normal">70</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">are_equivalent</span><span class="p">(</span><span class="n">formula_1</span><span class="p">:</span> <span class="n">Formula</span><span class="p">,</span> <span class="n">formula_2</span><span class="p">:</span> <span class="n">Formula</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tests wether two formulae are (semantically) equivalent</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tests whether two formulae are (semantically) equivalent</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        formula_1: the first formula to test</span>
@@ -1134,7 +1134,7 @@ Each valuation is dictionary mapping each proposition name to a truth value (boo
 
     <div class="doc doc-contents ">
 
-        <p>Tests wether several formulae are jointly satisfiable</p>
+        <p>Tests whether several formulae are jointly satisfiable</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -1243,7 +1243,7 @@ Each valuation is dictionary mapping each proposition name to a truth value (boo
 <span class="normal">97</span>
 <span class="normal">98</span>
 <span class="normal">99</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">are_jointly_satisfiable</span><span class="p">(</span><span class="o">*</span><span class="n">formulae</span><span class="p">:</span> <span class="n">Formula</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tests wether several formulae are jointly satisfiable</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tests whether several formulae are jointly satisfiable</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        *formulae (Formula): the formulae to test for satisfiability</span>
@@ -1286,7 +1286,7 @@ Each valuation is dictionary mapping each proposition name to a truth value (boo
 
     <div class="doc doc-contents ">
 
-        <p>Tests wether a formula is satisfiable</p>
+        <p>Tests whether a formula is satisfiable</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -1365,7 +1365,7 @@ Each valuation is dictionary mapping each proposition name to a truth value (boo
 <span class="normal">45</span>
 <span class="normal">46</span>
 <span class="normal">47</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">is_satisfiable</span><span class="p">(</span><span class="n">formula</span><span class="p">:</span> <span class="n">Formula</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tests wether a formula is satisfiable</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tests whether a formula is satisfiable</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        formula (Formula): the formula to test</span>
@@ -1401,7 +1401,7 @@ Each valuation is dictionary mapping each proposition name to a truth value (boo
 
     <div class="doc doc-contents ">
 
-        <p>Tests wether a formula is a tautology</p>
+        <p>Tests whether a formula is a tautology</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -1480,7 +1480,7 @@ Each valuation is dictionary mapping each proposition name to a truth value (boo
 <span class="normal">23</span>
 <span class="normal">24</span>
 <span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">is_tautology</span><span class="p">(</span><span class="n">formula</span><span class="p">:</span> <span class="n">Formula</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tests wether a formula is a tautology</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tests whether a formula is a tautology</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        formula (Formula): the formula to test</span>
@@ -1516,7 +1516,7 @@ Each valuation is dictionary mapping each proposition name to a truth value (boo
 
     <div class="doc doc-contents ">
 
-        <p>Tests wether an argument is (semantically) valid, i.e. wether the premises given entail the conclusion given</p>
+        <p>Tests whether an argument is (semantically) valid, i.e. whether the premises given entail the conclusion given</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -1627,7 +1627,7 @@ Each valuation is dictionary mapping each proposition name to a truth value (boo
 <span class="normal">182</span>
 <span class="normal">183</span>
 <span class="normal">184</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">is_valid_argument</span><span class="p">(</span><span class="n">premises</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Formula</span><span class="p">],</span> <span class="n">conclusion</span><span class="p">:</span> <span class="n">Formula</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tests wether an argument is (semantically) valid, i.e. wether the premises given entail the conclusion given</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tests whether an argument is (semantically) valid, i.e. whether the premises given entail the conclusion given</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        premises (Iterable[Formula]): the premises of the argument</span>
