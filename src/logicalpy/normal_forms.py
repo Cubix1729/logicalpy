@@ -36,6 +36,9 @@ class DisjunctiveClause:
             return str(self.literals[0])
         else:
             return "◻"
+        
+    def __repr__(self) -> str:
+        return f"DisjunctiveClause({", ".join([repr(literal) for literal in self.literals])})"
 
     def __eq__(self, other):
         if isinstance(other, DisjunctiveClause):
@@ -83,6 +86,9 @@ class ConjunctiveClause:
             return str(self.literals[0])
         else:
             return "◻"
+    
+    def __repr__(self) -> str:
+        return f"ConjunctiveClause({", ".join([repr(literal) for literal in self.literals])})"
 
     def __eq__(self, other):
         if isinstance(other, ConjunctiveClause):
