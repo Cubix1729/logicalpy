@@ -10,7 +10,8 @@ LogicalPy is a Python library providing basic functionalities for manipulating p
 
 The library allows to work with classical propositional logic formulae.
 The main features include:
- - The creation of logical formulae either directly or from a string
+
+ - The construction of logical formulae either directly or from a string
  - The implementation of semantic notions: satisfiability, entailment...
  - The conversion to normal forms (NNF, DNF, DNF)
  - Automated theorem proving with the resolution procedure

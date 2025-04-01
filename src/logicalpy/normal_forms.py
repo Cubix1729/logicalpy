@@ -31,14 +31,14 @@ class DisjunctiveClause:
 
     def __str__(self):
         if len(self.literals) >= 2:
-            return f"({" ∨ ".join(str(literal) for literal in self.literals)})"
+            return "({})".format(" ∨ ".join(str(literal) for literal in self.literals))
         elif len(self.literals) == 1:
             return str(self.literals[0])
         else:
             return "◻"
-        
+
     def __repr__(self) -> str:
-        return f"DisjunctiveClause({", ".join([repr(literal) for literal in self.literals])})"
+        return "DisjunctiveClause({})".format(", ".join([repr(literal) for literal in self.literals]))
 
     def __eq__(self, other):
         if isinstance(other, DisjunctiveClause):
@@ -81,14 +81,14 @@ class ConjunctiveClause:
 
     def __str__(self):
         if len(self.literals) >= 2:
-            return f"({" ∧ ".join(str(literal) for literal in self.literals)})"
+            return "({})".format(" ∧ ".join(str(literal) for literal in self.literals))
         elif len(self.literals) == 1:
             return str(self.literals[0])
         else:
             return "◻"
-    
+
     def __repr__(self) -> str:
-        return f"ConjunctiveClause({", ".join([repr(literal) for literal in self.literals])})"
+        return "ConjunctiveClause({})".format(", ".join([repr(literal) for literal in self.literals]))
 
     def __eq__(self, other):
         if isinstance(other, ConjunctiveClause):

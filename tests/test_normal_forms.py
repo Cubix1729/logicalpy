@@ -44,7 +44,7 @@ class TestNormalForms(unittest.TestCase):
 
         for formula_str, expected_result in formulae_to_test:
             self.assertEqual(
-                f"({" ∧ ".join([str(clause) for clause in to_clausal_cnf(Formula.from_string(formula_str))])})",
+                "({})".format(" ∧ ".join([str(clause) for clause in to_clausal_cnf(Formula.from_string(formula_str))])),
                 expected_result,
             )
 
@@ -57,7 +57,7 @@ class TestNormalForms(unittest.TestCase):
         for formula_str, expected_result in formulae_to_test:
 
             self.assertEqual(
-                f"({" ∨ ".join([str(clause) for clause in to_clausal_dnf(Formula.from_string(formula_str))])})",
+                "({})".format(" ∨ ".join([str(clause) for clause in to_clausal_dnf(Formula.from_string(formula_str))])),
                 expected_result,
             )
 

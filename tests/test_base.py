@@ -25,7 +25,9 @@ class TestFormula(unittest.TestCase):
 
     def test_repr(self):
         P = Proposition("P")
-        self.assertEqual(repr(Formula(Or(And(P, P), P))), "Formula(Or(And(Proposition('P'), Proposition('P')), Proposition('P')))")
+        self.assertEqual(
+            repr(Formula(Or(And(P, P), P))), "Formula(Or(And(Proposition('P'), Proposition('P')), Proposition('P')))"
+        )
 
     def test_propositions(self):
         P = Proposition("P")

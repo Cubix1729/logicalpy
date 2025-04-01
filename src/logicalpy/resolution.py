@@ -176,7 +176,9 @@ class ResolutionProver:
         """
 
         proof_finished = False
-        proof_str = f"Resolution proof for argument {", ".join([str(premise) for premise in self.premises])} ∴ {self.conclusion}\n\n"
+        proof_str = "Resolution proof for argument {0} ∴ {1}\n\n".format(
+            ", ".join([str(premise) for premise in self.premises]), str(self.conclusion)
+        )
         line_num = 1
 
         for clause in self._all_clauses[: self._premises_end_index]:
