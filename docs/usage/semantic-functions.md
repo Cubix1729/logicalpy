@@ -6,8 +6,8 @@ Semantics functions are contained in the [`semantics`](../api-reference/logicalp
 
 To check whether a formula a satisfiable, use the `is_satisfiable()` function.
 For getting one satisfying assignment for the formula, use the `one_satisfying_valuation()` function.
-For getting all of them, use the `all_satisfying_valuations()` function.
-To check whether *several* formulae are jointly satisfiable, the function `are_jointly_satisfiable()` can be used.
+For getting all of them, the `all_satisfying_valuations()` function can be used.
+To check whether *several* formulae are jointly satisfiable, use the function `are_jointly_satisfiable()`.
 
 Example:
 

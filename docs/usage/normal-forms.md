@@ -1,6 +1,6 @@
 # Normal Forms
 
-The sub-module for normal forms is the `normal_forms` sub-module. Its functionalities include:
+The conversion to normal forms is implemented in the [`normal_forms`](../api-reference/logicalpy/normal_forms.md) sub-module.
 
 ## CNF and DNF
 

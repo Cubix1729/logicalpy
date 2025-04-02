@@ -5,12 +5,12 @@ resolution proving.
 
 ## Usage
 
-The class `ResolutionProver` is the class used for automated resolution refutation.
-Its constructor takes the premises of the argument as an iterable containing `Formula` objects, and
+The class `ResolutionProver` is used for automated resolution refutation.
+Its constructor takes the premises of the logical argument as an iterable containing `Formula` objects, and
 and the conclusion to prove as a `Formula` as well.
-The `prove()` method returns (a tuple containing) two things:
+The `prove()` method returns (a tuple containing) two objects:
 
- - Whether a refutation was found from the premises and the negated conclusion
+ - Whether a contradiction was derived from the premises and the negated conclusion
  - The full resolution proof as a `str`
 
 See the example below for a proof of $A \lor B, A \to C, B \to C \vdash C$:

@@ -27,7 +27,7 @@ pip install logicalpy
 
 For getting started, see the [usage](usage/constructing-formulae.md) section.
 
-For a complete project reference, see the [API Reference](api-reference/logicalpy).
+For a complete project reference, see the [API Reference](api-reference/logicalpy/index.md).
 
 ## Contributing
 
