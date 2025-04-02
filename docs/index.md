@@ -23,6 +23,8 @@ With pip:
 pip install logicalpy
 ```
 
+Note than the library needs a Python version higher than 3.10.
+
 ## Usage
 
 For getting started, see the [usage](usage/constructing-formulae.md) section.

@@ -25,6 +25,8 @@ With pip:
 pip install logicalpy
 ```
 
+Note than the library needs a Python version higher than 3.10.
+
 ## Contributing
 
 If you want to contribute to this (small) project, you can [open an issue](https://github.com/Cubix1729/logicalpy/issues)
