@@ -280,23 +280,22 @@ propositional_parser = lark.Lark(propositional_grammar)
 
 
 def _interpret_formula_tree(tree: lark.Tree):
-    match tree.data:
-        case "start":
-            return _interpret_formula_tree(tree.children[0])
-        case "proposition":
-            return Proposition(str(tree.children[0]))
-        case "negation":
-            return Not(_interpret_formula_tree(tree.children[0]))
-        case "disjunction":
-            return Or(_interpret_formula_tree(tree.children[0]), _interpret_formula_tree(tree.children[1]))
-        case "conjunction":
-            return And(_interpret_formula_tree(tree.children[0]), _interpret_formula_tree(tree.children[1]))
-        case "implication":
-            return Implies(_interpret_formula_tree(tree.children[0]), _interpret_formula_tree(tree.children[1]))
-        case "biconditional":
-            return BiImplies(_interpret_formula_tree(tree.children[0]), _interpret_formula_tree(tree.children[1]))
-        case "formula":
-            return _interpret_formula_tree(tree.children[0])
+    if tree.data == "start":
+        return _interpret_formula_tree(tree.children[0])
+    elif tree.data == "proposition":
+        return Proposition(str(tree.children[0]))
+    elif tree.data == "negation":
+        return Not(_interpret_formula_tree(tree.children[0]))
+    elif tree.data == "disjunction":
+        return Or(_interpret_formula_tree(tree.children[0]), _interpret_formula_tree(tree.children[1]))
+    elif tree.data == "conjunction":
+        return And(_interpret_formula_tree(tree.children[0]), _interpret_formula_tree(tree.children[1]))
+    elif tree.data == "implication":
+        return Implies(_interpret_formula_tree(tree.children[0]), _interpret_formula_tree(tree.children[1]))
+    elif tree.data == "biconditional":
+        return BiImplies(_interpret_formula_tree(tree.children[0]), _interpret_formula_tree(tree.children[1]))
+    elif tree.data == "formula":
+        return _interpret_formula_tree(tree.children[0])
 
 
 class Formula:
