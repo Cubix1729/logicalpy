@@ -401,6 +401,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#formula-propositions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formula Propositions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#semantic-valuation" class="md-nav__link">
     <span class="md-ellipsis">
       Semantic valuation
@@ -714,6 +723,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#formula-propositions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formula Propositions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#semantic-valuation" class="md-nav__link">
     <span class="md-ellipsis">
       Semantic valuation
@@ -751,6 +769,14 @@ Example:</p>
 <span class="err">$</span><span class="p">(</span><span class="n">P</span> \<span class="n">to</span> <span class="p">(</span>\<span class="n">neg</span> <span class="n">P</span> \<span class="n">land</span> <span class="n">P</span><span class="p">))</span> \<span class="n">lor</span> <span class="n">Q</span><span class="err">$</span>
 </code></pre></div>
 <p>The above LaTex would render as follow: <span class="arithmatex">\((P \to (\neg P \land P)) \lor Q\)</span></p>
+<h2 id="formula-propositions">Formula Propositions</h2>
+<p>You can get the set of all the propositions of a formula (with every proposition represented by its name) with
+the <code>propositions()</code> method of the <code>Formula</code> class:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">logicalpy</span> <span class="kn">import</span> <span class="n">Formula</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">test_formula</span> <span class="o">=</span> <span class="n">Formula</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="s2">&quot;P -&gt; Q&quot;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">test_formula</span><span class="o">.</span><span class="n">propositions</span><span class="p">()</span>
+<span class="p">{</span><span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="s1">&#39;Q&#39;</span><span class="p">}</span>
+</code></pre></div>
 <h2 id="semantic-valuation">Semantic valuation</h2>
 <p><code>Formula</code> objects can be tested with a particular valuation, with the <code>is_satisfied()</code> method. This method takes
 a valuation as a <code>dict</code> associating each proposition name (<code>str</code>) with a truth value (<code>bool</code>) and returns
@@ -763,6 +789,8 @@ Example:</p>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">test_formula</span><span class="o">.</span><span class="n">is_satisfied</span><span class="p">({</span><span class="s2">&quot;P&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;Q&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">})</span>
 <span class="kc">True</span>
 </code></pre></div>
+<p><br></p>
+<p>For a complete reference of the <code>Formula</code> class, see the <a href="../../api-reference/logicalpy/base/#logicalpy.base.Formula">API reference</a>.</p>
 
 
 
