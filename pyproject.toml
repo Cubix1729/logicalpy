@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "logicalpy"
 description = "A library providing basic functionalities for manipulating propositional logic"
-version = "1.0.0"
+version = "1.0.1"
 authors = [
     {name = "Timothée Monin"}
 ]

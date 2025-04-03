@@ -25,7 +25,7 @@ With pip:
 pip install logicalpy
 ```
 
-Note than the library needs a Python version higher than 3.9.
+Note that the library needs a Python version higher than 3.9.
 
 ## Contributing
 
