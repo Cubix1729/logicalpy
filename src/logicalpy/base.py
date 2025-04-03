@@ -260,7 +260,7 @@ class BiImplies(_TwoPlaceConnective):
         return And(Or(Not(a), b), Or(Not(b), a))
 
 
-propositional_grammar = r"""
+PROPOSITIONAL_GRAMMAR = r"""
 start: formula
 PROP: /[A-Za-z]+[0-9]*/
 
@@ -276,25 +276,25 @@ formula: PROP                                  -> proposition
 %ignore WS
 """
 
-propositional_parser = lark.Lark(propositional_grammar)
+PROPOSITIONAL_PARSER = lark.Lark(PROPOSITIONAL_GRAMMAR)
 
 
 def _interpret_formula_tree(tree: lark.Tree):
     if tree.data == "start":
         return _interpret_formula_tree(tree.children[0])
-    elif tree.data == "proposition":
+    if tree.data == "proposition":
         return Proposition(str(tree.children[0]))
-    elif tree.data == "negation":
+    if tree.data == "negation":
         return Not(_interpret_formula_tree(tree.children[0]))
-    elif tree.data == "disjunction":
+    if tree.data == "disjunction":
         return Or(_interpret_formula_tree(tree.children[0]), _interpret_formula_tree(tree.children[1]))
-    elif tree.data == "conjunction":
+    if tree.data == "conjunction":
         return And(_interpret_formula_tree(tree.children[0]), _interpret_formula_tree(tree.children[1]))
-    elif tree.data == "implication":
+    if tree.data == "implication":
         return Implies(_interpret_formula_tree(tree.children[0]), _interpret_formula_tree(tree.children[1]))
-    elif tree.data == "biconditional":
+    if tree.data == "biconditional":
         return BiImplies(_interpret_formula_tree(tree.children[0]), _interpret_formula_tree(tree.children[1]))
-    elif tree.data == "formula":
+    if tree.data == "formula":
         return _interpret_formula_tree(tree.children[0])
 
 
@@ -370,7 +370,7 @@ class Formula:
             (Formula): the formula built
 
         """
-        return cls(_interpret_formula_tree(propositional_parser.parse(formula_str)))
+        return cls(_interpret_formula_tree(PROPOSITIONAL_PARSER.parse(formula_str)))
 
     def propositions(self) -> set[str]:
         """A method for listing all the propositions of the formula

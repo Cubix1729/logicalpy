@@ -1,8 +1,8 @@
-from .normal_forms import to_clausal_cnf, DisjunctiveClause
 from typing import Iterable, Optional
 from itertools import combinations
-from .base import Formula, Not
 import time
+from .normal_forms import to_clausal_cnf, DisjunctiveClause
+from .base import Formula, Not
 
 
 def are_complementary_literals(literal_1: Formula, literal_2: Formula) -> bool:

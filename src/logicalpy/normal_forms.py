@@ -1,5 +1,5 @@
-from .base import Formula, Or, And
 from typing import Generator
+from .base import Formula, Or, And
 
 
 class DisjunctiveClause:
