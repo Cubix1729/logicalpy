@@ -71,7 +71,7 @@ class TestFormula(unittest.TestCase):
             ("P -> (Q <-> P)", r"$P \to (Q \leftrightarrow P)$"),
         )
         for formula_str, expected in formulae_to_test:
-            self.assertEqual(Formula.from_string(formula_str).as_latex(), expected)
+            self.assertEqual(Formula.from_string(formula_str).to_latex(), expected)
 
     def test_main_connectives(self):
         self.assertEqual(Formula.from_string("P").is_proposition(), True)

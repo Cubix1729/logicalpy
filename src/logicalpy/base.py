@@ -24,7 +24,7 @@ class Proposition:
     def __repr__(self) -> str:
         return f"Proposition('{self.name}')"
 
-    def as_latex(self) -> str:
+    def to_latex(self) -> str:
         return self.name
 
     def propositions(self) -> set:
@@ -83,8 +83,8 @@ class Not:
     def __repr__(self) -> str:
         return f"Not({repr(self.a)})"
 
-    def as_latex(self) -> str:
-        return r"\neg " + self.a.as_latex()
+    def to_latex(self) -> str:
+        return r"\neg " + self.a.to_latex()
 
     def propositions(self) -> set[str]:
         return self.a.propositions()
@@ -145,8 +145,8 @@ class _TwoPlaceConnective:
     def __repr__(self) -> str:
         return type(self).__name__ + f"({repr(self.a)}, {repr(self.b)})"
 
-    def as_latex(self) -> str:
-        return f"({self.a.as_latex()} {self.LATEX_SYMBOL} {self.b.as_latex()})"
+    def to_latex(self) -> str:
+        return f"({self.a.to_latex()} {self.LATEX_SYMBOL} {self.b.to_latex()})"
 
     def propositions(self) -> set[str]:
         return self.a.propositions().union(self.b.propositions())
@@ -345,14 +345,14 @@ class Formula:
     def __hash__(self) -> int:
         return hash(str(self))
 
-    def as_latex(self) -> str:
+    def to_latex(self) -> str:
         """Renders the formula as LaTex code
 
         Returns:
             (str): the LaTex representation of the formula, as inline math
 
         """
-        formula_latex = self.formula.as_latex()
+        formula_latex = self.formula.to_latex()
         if formula_latex.startswith("(") and formula_latex.endswith(
             ")"
         ):  # if there are outer parenthesis, we remove them
