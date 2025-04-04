@@ -2,13 +2,13 @@
 
 ## Latex rendering
 
-Formulae can be rendered as LaTex code, with the `as_latex()` method of `Formula` objects.
+Formulae can be rendered as LaTex code, with the `to_latex()` method of `Formula` objects.
 Example:
 
 ```python
 >>> from logicalpy import Formula
 >>> test_formula = Formula.from_string("(P -> (~P & P)) v Q")
->>> print(test_formula.as_latex())
+>>> print(test_formula.to_latex())
 $(P \to (\neg P \land P)) \lor Q$
 ```
 
