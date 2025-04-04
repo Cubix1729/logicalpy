@@ -1,6 +1,98 @@
-from .base import Formula
-from itertools import product
 from typing import Optional, Iterable
+from itertools import product
+import re
+from tabulate import tabulate
+from .base import Formula
+
+
+class TruthTable:
+    """A class representing a truth table"""
+
+    def __init__(self, formula: Formula):
+        """The truth table's constructor
+
+        Args:
+            formula (Formula): the formula to build the truth table for
+
+        """
+
+        self.formula = formula
+
+        # Attributes storing return values for more efficiency
+        self._str_table = None
+        self._latex_table = None
+
+    def to_str(self) -> str:
+        """Renders the truth table as a str with the `tabulate` library (style used: 'simple')
+
+        Returns:
+            (str): the truth table
+
+        """
+
+        if self._str_table is not None:
+            return self._str_table
+
+        table_data = []
+
+        formula_props = sorted(list(self.formula.propositions()))
+        table_headers = formula_props + [str(self.formula)]
+
+        truth_valuations_possible = product((False, True), repeat=len(formula_props))
+
+        for valuation in truth_valuations_possible:
+            valuation_dict = {prop: value for (prop, value) in zip(formula_props, valuation)}
+            if self.formula.is_satisfied(valuation_dict):
+                truth_value = "T"
+            else:
+                truth_value = "F"
+
+            table_data.append(["T" if val is True else "F" for val in valuation] + [truth_value])
+
+        self._str_table = tabulate(table_data, headers=table_headers, tablefmt="simple")
+        return self._str_table
+
+    def __str__(self) -> str:
+        return self.to_str()
+
+    def to_latex(self) -> str:
+        """Renders the truth table as LaTex (with the `tabulate` library)
+
+        Returns:
+            (str): the LaTex output, which uses the `tabular` environment
+
+        """
+        if self._latex_table is not None:
+            return self._latex_table
+
+        table_data = []
+
+        formula_props = sorted(list(self.formula.propositions()))
+        table_headers = formula_props + [self.formula.to_latex()]
+
+        truth_valuations_possible = product((False, True), repeat=len(formula_props))
+
+        for valuation in truth_valuations_possible:
+            valuation_dict = {prop: value for (prop, value) in zip(formula_props, valuation)}
+            if self.formula.is_satisfied(valuation_dict):
+                truth_value = "T"
+            else:
+                truth_value = "F"
+
+            table_data.append(["T" if val is True else "F" for val in valuation] + [truth_value])
+
+        latex_result = tabulate(table_data, headers=table_headers, tablefmt="latex_raw")
+        # Add vertical bars between columns and remove very first horizontal bar
+        latex_result = re.sub(
+            r"begin\{tabular\}\{.+\}\n\\hline",
+            r"begin{tabular}{" + "|".join(["c" for _ in range(len(table_headers))]) + "}",
+            latex_result,
+            count=1,
+        )
+        # Remove last horizontal bar
+        latex_result = latex_result.replace(r"\hline" + "\n" + r"\end{tabular}", r"\end{tabular}")
+        self._latex_table = latex_result
+        return self._latex_table
 
 
 def is_tautology(formula: Formula) -> bool:

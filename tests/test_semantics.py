@@ -4,6 +4,32 @@ import unittest
 
 
 class TestSemantics(unittest.TestCase):
+    def test_truth_table_str(self):
+        test_truth_table = TruthTable(Formula.from_string("~P & (P -> Q)"))
+        self.assertEqual(
+            test_truth_table.to_str(),
+            """P    Q    ¬P ∧ (P → Q)
+---  ---  --------------
+F    F    T
+F    T    T
+T    F    F
+T    T    F""",
+        )
+
+    def test_truth_table_latex(self):
+        test_truth_table = TruthTable(Formula.from_string("~P & (P -> Q)"))
+        self.assertEqual(
+            test_truth_table.to_latex(),
+            r"""\begin{tabular}{c|c|c}
+ P   & Q   & $\neg P \land (P \to Q)$   \\
+\hline
+ F   & F   & T                          \\
+ F   & T   & T                          \\
+ T   & F   & F                          \\
+ T   & T   & F                          \\
+\end{tabular}""",
+        )
+
     def test_tautology(self):
         formulae_to_test = (
             ("P v (~P)", True),
