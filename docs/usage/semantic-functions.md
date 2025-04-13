@@ -6,15 +6,15 @@ Semantics functions are contained in the [`semantics`](../api-reference/logicalp
 
 Truth tables can be built using the `TruthTable` class. Then, the string representation of the truth table
 can be found with the `to_str` method (or directly with the `str` built-in constructor).
-You can use `to_latex()` or `to_markdown()` to render the truth table to LaTex or Markdown.
+You can also use the `to_latex()` or `to_markdown()` methods to render the truth table to LaTex or Markdown.
 
 Example:
 
 ```python
 >>> from logicalpy import Formula
 >>> from logicalpy.semantics import TruthTable
->>> formula = Formula.from_string("P v (~Q & ~P)")
->>> truth_table = TruthTable(test_formula)
+>>> fml = Formula.from_string("P v (~Q & ~P)")
+>>> truth_table = TruthTable(fml)
 >>> print(truth_table)
 P    Q    P ∨ (¬Q ∧ ¬P)
 ---  ---  ---------------

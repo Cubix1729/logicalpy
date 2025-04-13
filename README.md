@@ -12,8 +12,9 @@ The library allows to work with classical propositional logic formulae.
 The main features include:
 
  - The construction of logical formulae either directly or from a string
+ - The visualisation of truth tables
  - The implementation of semantic notions: satisfiability, entailment...
- - The conversion to normal forms (NNF, DNF, DNF)
+ - The conversion to normal forms (NNF, CNF, or DNF)
  - Automated theorem proving with the resolution procedure
 
 For the complete documentation, see [https://cubix1729.github.io/logicalpy/](https://cubix1729.github.io/logicalpy/).
@@ -31,6 +32,10 @@ Note that the library needs a Python version higher than 3.9.
 
 If you want to contribute to this (small) project, you can [open an issue](https://github.com/Cubix1729/logicalpy/issues)
 to report a bug or request a feature, or [make a pull request](https://github.com/Cubix1729/logicalpy/pulls).
+
+## Tests
+
+To run the the tests, clone the repository, go into the `tests` directory and run `python -m unittest`.
 
 ## License
 
