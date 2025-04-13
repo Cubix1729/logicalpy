@@ -41,10 +41,10 @@ Example usage:
 ```python
 >>> from logicalpy import Formula
 >>> from logicalpy.normal_forms import to_cnf, to_dnf
->>> test_formula = Formula.from_string("~P -> ~(Q v P)")
->>> print(to_dnf(test_formula))
+>>> fml = Formula.from_string("~P -> ~(Q v P)")
+>>> print(to_dnf(fml))
 P ∨ (¬Q ∧ ¬P)
->>> print(to_cnf(test_formula))
+>>> print(to_cnf(fml))
 (P ∨ ¬Q) ∧ (P ∨ ¬P)
 ```
 

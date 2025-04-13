@@ -1,6 +1,6 @@
 # Using Formulae
 
-## Latex rendering
+## Latex Rendering
 
 Formulae can be rendered as LaTex code, with the `to_latex()` method of `Formula` objects.
 Example:
@@ -26,7 +26,7 @@ the `propositions()` method of the `Formula` class:
 {'P', 'Q'}
 ```
 
-## Semantic valuation
+## Semantic Valuation
 
 `Formula` objects can be tested with a particular valuation, with the `is_satisfied()` method. This method takes
 a valuation as a `dict` associating each proposition name (`str`) with a truth value (`bool`) and returns

@@ -19,9 +19,9 @@ The connectives are as follow:
 ```python
 from logicalpy import Formula
 
-test_formula = Formula.from_string("(~P & (P -> Q)) <-> P")
+fml = Formula.from_string("(~P & (P -> Q)) <-> P")
 
-print(test_formula)
+print(fml)
 ```
 
 Output:
@@ -42,9 +42,9 @@ from logicalpy import Formula, Proposition
 P = Proposition("P")
 Q = Proposition("Q")
 
-test_formula = (~P & (P >> Q)) | P
+fml = (~P & (P >> Q)) | P
 
-print(test_formula)
+print(fml)
 ```
 
 Output:
@@ -64,9 +64,9 @@ from logicalpy import Formula, Proposition, And, Or, Not, Implies, BiImplies
 P = Proposition("P")
 Q = Proposition("Q")
 
-test_formula = Formula(Or(And(Not(P), Implies(P, Q)), P))
+fml = Formula(Or(And(Not(P), Implies(P, Q)), P))
 
-print(test_formula)
+print(fml)
 ```
 
 Output:

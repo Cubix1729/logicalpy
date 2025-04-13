@@ -27,9 +27,9 @@ premises = [
 
 conclusion = Formula.from_string("C")
 
-test_prover = ResolutionProver(premises=premises, conclusion=conclusion)
+prover = ResolutionProver(premises=premises, conclusion=conclusion)
 
-refutation_found, proof_str = test_prover.prove()
+refutation_found, proof_str = prover.prove()
 
 print("Refutation found:", refutation_found)
 
