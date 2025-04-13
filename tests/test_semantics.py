@@ -10,10 +10,22 @@ class TestSemantics(unittest.TestCase):
             test_truth_table.to_str(),
             """P    Q    ¬P ∧ (P → Q)
 ---  ---  --------------
-F    F    T
-F    T    T
+T    T    F
 T    F    F
-T    T    F""",
+F    T    T
+F    F    T""",
+        )
+
+    def test_truth_table_markdown(self):
+        test_truth_table = TruthTable(Formula.from_string("~P & (P -> Q)"))
+        self.assertEqual(
+            test_truth_table.to_markdown(),
+            """| P   | Q   | ¬P ∧ (P → Q)   |
+|-----|-----|----------------|
+| T   | T   | F              |
+| T   | F   | F              |
+| F   | T   | T              |
+| F   | F   | T              |""",
         )
 
     def test_truth_table_latex(self):
@@ -23,10 +35,10 @@ T    T    F""",
             r"""\begin{tabular}{c|c|c}
  P   & Q   & $\neg P \land (P \to Q)$   \\
 \hline
- F   & F   & T                          \\
- F   & T   & T                          \\
- T   & F   & F                          \\
  T   & T   & F                          \\
+ T   & F   & F                          \\
+ F   & T   & T                          \\
+ F   & F   & T                          \\
 \end{tabular}""",
         )
 

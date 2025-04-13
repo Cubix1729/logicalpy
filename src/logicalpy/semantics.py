@@ -20,6 +20,7 @@ class TruthTable:
 
         # Attributes storing return values for more efficiency
         self._str_table = None
+        self._markdown_table = None
         self._latex_table = None
 
     def to_str(self) -> str:
@@ -38,7 +39,7 @@ class TruthTable:
         formula_props = sorted(list(self.formula.propositions()))
         table_headers = formula_props + [str(self.formula)]
 
-        truth_valuations_possible = product((False, True), repeat=len(formula_props))
+        truth_valuations_possible = product((True, False), repeat=len(formula_props))
 
         for valuation in truth_valuations_possible:
             valuation_dict = {prop: value for (prop, value) in zip(formula_props, valuation)}
@@ -55,11 +56,44 @@ class TruthTable:
     def __str__(self) -> str:
         return self.to_str()
 
+    def __repr__(self) -> str:
+        return f"TruthTable({self.formula})"
+
+    def to_markdown(self) -> str:
+        """Renders the truth table as Markdown with the `tabulate` library
+
+        Returns:
+            (str): the Markdown truth table
+
+        """
+
+        if self._markdown_table is not None:
+            return self._markdown_table
+
+        table_data = []
+
+        formula_props = sorted(list(self.formula.propositions()))
+        table_headers = formula_props + [str(self.formula)]
+
+        truth_valuations_possible = product((True, False), repeat=len(formula_props))
+
+        for valuation in truth_valuations_possible:
+            valuation_dict = {prop: value for (prop, value) in zip(formula_props, valuation)}
+            if self.formula.is_satisfied(valuation_dict):
+                truth_value = "T"
+            else:
+                truth_value = "F"
+
+            table_data.append(["T" if val is True else "F" for val in valuation] + [truth_value])
+
+        self._str_table = tabulate(table_data, headers=table_headers, tablefmt="github")
+        return self._str_table
+
     def to_latex(self) -> str:
         """Renders the truth table as LaTex (with the `tabulate` library)
 
         Returns:
-            (str): the LaTex output, which uses the `tabular` environment
+            (str): the LaTex output, which uses the `tabular` LaTex environment
 
         """
         if self._latex_table is not None:
@@ -70,7 +104,7 @@ class TruthTable:
         formula_props = sorted(list(self.formula.propositions()))
         table_headers = formula_props + [self.formula.to_latex()]
 
-        truth_valuations_possible = product((False, True), repeat=len(formula_props))
+        truth_valuations_possible = product((True, False), repeat=len(formula_props))
 
         for valuation in truth_valuations_possible:
             valuation_dict = {prop: value for (prop, value) in zip(formula_props, valuation)}
