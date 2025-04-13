@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "logicalpy"
 description = "A library providing basic functionalities for manipulating propositional logic"
-version = "1.0.1"
+version = "1.1.0"
 authors = [
     {name = "Timothée Monin"}
 ]
@@ -20,6 +20,7 @@ keywords = [
 ]
 classifiers = [
     "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
