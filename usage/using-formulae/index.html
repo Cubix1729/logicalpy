@@ -394,7 +394,7 @@
         <li class="md-nav__item">
   <a href="#latex-rendering" class="md-nav__link">
     <span class="md-ellipsis">
-      Latex rendering
+      Latex Rendering
     </span>
   </a>
   
@@ -412,7 +412,7 @@
         <li class="md-nav__item">
   <a href="#semantic-valuation" class="md-nav__link">
     <span class="md-ellipsis">
-      Semantic valuation
+      Semantic Valuation
     </span>
   </a>
   
@@ -716,7 +716,7 @@
         <li class="md-nav__item">
   <a href="#latex-rendering" class="md-nav__link">
     <span class="md-ellipsis">
-      Latex rendering
+      Latex Rendering
     </span>
   </a>
   
@@ -734,7 +734,7 @@
         <li class="md-nav__item">
   <a href="#semantic-valuation" class="md-nav__link">
     <span class="md-ellipsis">
-      Semantic valuation
+      Semantic Valuation
     </span>
   </a>
   
@@ -760,12 +760,12 @@
 
 
 <h1 id="using-formulae">Using Formulae</h1>
-<h2 id="latex-rendering">Latex rendering</h2>
-<p>Formulae can be rendered as LaTex code, with the <code>as_latex()</code> method of <code>Formula</code> objects.
+<h2 id="latex-rendering">Latex Rendering</h2>
+<p>Formulae can be rendered as LaTex code, with the <code>to_latex()</code> method of <code>Formula</code> objects.
 Example:</p>
 <div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">logicalpy</span> <span class="kn">import</span> <span class="n">Formula</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">test_formula</span> <span class="o">=</span> <span class="n">Formula</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="s2">&quot;(P -&gt; (~P &amp; P)) v Q&quot;</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">test_formula</span><span class="o">.</span><span class="n">as_latex</span><span class="p">())</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">test_formula</span><span class="o">.</span><span class="n">to_latex</span><span class="p">())</span>
 <span class="err">$</span><span class="p">(</span><span class="n">P</span> \<span class="n">to</span> <span class="p">(</span>\<span class="n">neg</span> <span class="n">P</span> \<span class="n">land</span> <span class="n">P</span><span class="p">))</span> \<span class="n">lor</span> <span class="n">Q</span><span class="err">$</span>
 </code></pre></div>
 <p>The above LaTex would render as follow: <span class="arithmatex">\((P \to (\neg P \land P)) \lor Q\)</span></p>
@@ -777,7 +777,7 @@ the <code>propositions()</code> method of the <code>Formula</code> class:</p>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">test_formula</span><span class="o">.</span><span class="n">propositions</span><span class="p">()</span>
 <span class="p">{</span><span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="s1">&#39;Q&#39;</span><span class="p">}</span>
 </code></pre></div>
-<h2 id="semantic-valuation">Semantic valuation</h2>
+<h2 id="semantic-valuation">Semantic Valuation</h2>
 <p><code>Formula</code> objects can be tested with a particular valuation, with the <code>is_satisfied()</code> method. This method takes
 a valuation as a <code>dict</code> associating each proposition name (<code>str</code>) with a truth value (<code>bool</code>) and returns
 whether the <code>Formula</code> is satisfied by the valuation.

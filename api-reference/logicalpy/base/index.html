@@ -613,15 +613,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#logicalpy.base.Formula.as_latex" class="md-nav__link">
-    <span class="md-ellipsis">
-      as_latex
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#logicalpy.base.Formula.from_string" class="md-nav__link">
     <span class="md-ellipsis">
       from_string
@@ -706,6 +697,15 @@
   <a href="#logicalpy.base.Formula.propositions" class="md-nav__link">
     <span class="md-ellipsis">
       propositions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logicalpy.base.Formula.to_latex" class="md-nav__link">
+    <span class="md-ellipsis">
+      to_latex
     </span>
   </a>
   
@@ -913,15 +913,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#logicalpy.base.Formula.as_latex" class="md-nav__link">
-    <span class="md-ellipsis">
-      as_latex
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#logicalpy.base.Formula.from_string" class="md-nav__link">
     <span class="md-ellipsis">
       from_string
@@ -1006,6 +997,15 @@
   <a href="#logicalpy.base.Formula.propositions" class="md-nav__link">
     <span class="md-ellipsis">
       propositions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logicalpy.base.Formula.to_latex" class="md-nav__link">
+    <span class="md-ellipsis">
+      to_latex
     </span>
   </a>
   
@@ -1590,14 +1590,14 @@
     <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="nf">as_latex</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">to_latex</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Renders the formula as LaTex code</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            (str): the LaTex representation of the formula, as inline math</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">formula_latex</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">formula</span><span class="o">.</span><span class="n">as_latex</span><span class="p">()</span>
+        <span class="n">formula_latex</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">formula</span><span class="o">.</span><span class="n">to_latex</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">formula_latex</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;(&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">formula_latex</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span>
             <span class="s2">&quot;)&quot;</span>
         <span class="p">):</span>  <span class="c1"># if there are outer parenthesis, we remove them</span>
@@ -1615,7 +1615,7 @@
 <span class="sd">            (Formula): the formula built</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">_interpret_formula_tree</span><span class="p">(</span><span class="n">propositional_parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">formula_str</span><span class="p">)))</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">_interpret_formula_tree</span><span class="p">(</span><span class="n">PROPOSITIONAL_PARSER</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">formula_str</span><span class="p">)))</span>
 
     <span class="k">def</span> <span class="nf">propositions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;A method for listing all the propositions of the formula</span>
@@ -1770,76 +1770,6 @@
 <div class="doc doc-object doc-function">
 
 
-<h3 id="logicalpy.base.Formula.as_latex" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">as_latex</span><span class="p">()</span></code>
-
-</h3>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Renders the formula as LaTex code</p>
-
-
-    <p><span class="doc-section-title">Returns:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                  <code><span title="str">str</span></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>the LaTex representation of the formula, as inline math</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-            <details class="quote">
-              <summary>Source code in <code>src\logicalpy\base.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">348</span>
-<span class="normal">349</span>
-<span class="normal">350</span>
-<span class="normal">351</span>
-<span class="normal">352</span>
-<span class="normal">353</span>
-<span class="normal">354</span>
-<span class="normal">355</span>
-<span class="normal">356</span>
-<span class="normal">357</span>
-<span class="normal">358</span>
-<span class="normal">359</span>
-<span class="normal">360</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">as_latex</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Renders the formula as LaTex code</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        (str): the LaTex representation of the formula, as inline math</span>
-
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">formula_latex</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">formula</span><span class="o">.</span><span class="n">as_latex</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">formula_latex</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;(&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">formula_latex</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span>
-        <span class="s2">&quot;)&quot;</span>
-    <span class="p">):</span>  <span class="c1"># if there are outer parenthesis, we remove them</span>
-        <span class="k">return</span> <span class="s2">&quot;$&quot;</span> <span class="o">+</span> <span class="n">formula_latex</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;$&quot;</span>
-    <span class="k">return</span> <span class="s2">&quot;$&quot;</span> <span class="o">+</span> <span class="n">formula_latex</span> <span class="o">+</span> <span class="s2">&quot;$&quot;</span>
-</code></pre></div></td></tr></table></div>
-            </details>
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
 <h3 id="logicalpy.base.Formula.from_string" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">from_string</span><span class="p">(</span><span class="n">formula_str</span><span class="p">)</span></code>
 
@@ -1933,7 +1863,7 @@
 <span class="sd">        (Formula): the formula built</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">_interpret_formula_tree</span><span class="p">(</span><span class="n">propositional_parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">formula_str</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">_interpret_formula_tree</span><span class="p">(</span><span class="n">PROPOSITIONAL_PARSER</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">formula_str</span><span class="p">)))</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -2325,6 +2255,76 @@
 
 </div>
 
+<div class="doc doc-object doc-function">
+
+
+<h3 id="logicalpy.base.Formula.to_latex" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">to_latex</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Renders the formula as LaTex code</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>the LaTex representation of the formula, as inline math</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+            <details class="quote">
+              <summary>Source code in <code>src\logicalpy\base.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">348</span>
+<span class="normal">349</span>
+<span class="normal">350</span>
+<span class="normal">351</span>
+<span class="normal">352</span>
+<span class="normal">353</span>
+<span class="normal">354</span>
+<span class="normal">355</span>
+<span class="normal">356</span>
+<span class="normal">357</span>
+<span class="normal">358</span>
+<span class="normal">359</span>
+<span class="normal">360</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">to_latex</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Renders the formula as LaTex code</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        (str): the LaTex representation of the formula, as inline math</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">formula_latex</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">formula</span><span class="o">.</span><span class="n">to_latex</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">formula_latex</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;(&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">formula_latex</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span>
+        <span class="s2">&quot;)&quot;</span>
+    <span class="p">):</span>  <span class="c1"># if there are outer parenthesis, we remove them</span>
+        <span class="k">return</span> <span class="s2">&quot;$&quot;</span> <span class="o">+</span> <span class="n">formula_latex</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;$&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;$&quot;</span> <span class="o">+</span> <span class="n">formula_latex</span> <span class="o">+</span> <span class="s2">&quot;$&quot;</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
 
 
   </div>
@@ -2577,8 +2577,8 @@
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Not(</span><span class="si">{</span><span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span>
 
-    <span class="k">def</span> <span class="nf">as_latex</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">return</span> <span class="sa">r</span><span class="s2">&quot;\neg &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">as_latex</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">to_latex</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">r</span><span class="s2">&quot;\neg &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">to_latex</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">propositions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">propositions</span><span class="p">()</span>
@@ -2892,7 +2892,7 @@
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Proposition(&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;)&quot;</span>
 
-    <span class="k">def</span> <span class="nf">as_latex</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">to_latex</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
 
     <span class="k">def</span> <span class="nf">propositions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>

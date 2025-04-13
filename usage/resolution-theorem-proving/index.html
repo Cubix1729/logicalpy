@@ -747,9 +747,9 @@ The <code>prove()</code> method returns (a tuple containing) two objects:</p>
 
 <span class="n">conclusion</span> <span class="o">=</span> <span class="n">Formula</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="s2">&quot;C&quot;</span><span class="p">)</span>
 
-<span class="n">test_prover</span> <span class="o">=</span> <span class="n">ResolutionProver</span><span class="p">(</span><span class="n">premises</span><span class="o">=</span><span class="n">premises</span><span class="p">,</span> <span class="n">conclusion</span><span class="o">=</span><span class="n">conclusion</span><span class="p">)</span>
+<span class="n">prover</span> <span class="o">=</span> <span class="n">ResolutionProver</span><span class="p">(</span><span class="n">premises</span><span class="o">=</span><span class="n">premises</span><span class="p">,</span> <span class="n">conclusion</span><span class="o">=</span><span class="n">conclusion</span><span class="p">)</span>
 
-<span class="n">refutation_found</span><span class="p">,</span> <span class="n">proof_str</span> <span class="o">=</span> <span class="n">test_prover</span><span class="o">.</span><span class="n">prove</span><span class="p">()</span>
+<span class="n">refutation_found</span><span class="p">,</span> <span class="n">proof_str</span> <span class="o">=</span> <span class="n">prover</span><span class="o">.</span><span class="n">prove</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Refutation found:&quot;</span><span class="p">,</span> <span class="n">refutation_found</span><span class="p">)</span>
 

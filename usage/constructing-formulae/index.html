@@ -797,9 +797,9 @@ The connectives are as follow:</p>
 </table>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">logicalpy</span> <span class="kn">import</span> <span class="n">Formula</span>
 
-<span class="n">test_formula</span> <span class="o">=</span> <span class="n">Formula</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="s2">&quot;(~P &amp; (P -&gt; Q)) &lt;-&gt; P&quot;</span><span class="p">)</span>
+<span class="n">fml</span> <span class="o">=</span> <span class="n">Formula</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="s2">&quot;(~P &amp; (P -&gt; Q)) &lt;-&gt; P&quot;</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">test_formula</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fml</span><span class="p">)</span>
 </code></pre></div>
 <p>Output:</p>
 <div class="highlight"><pre><span></span><code>(¬P ∧ (P → Q)) ↔ P
@@ -813,9 +813,9 @@ Example:</p>
 <span class="n">P</span> <span class="o">=</span> <span class="n">Proposition</span><span class="p">(</span><span class="s2">&quot;P&quot;</span><span class="p">)</span>
 <span class="n">Q</span> <span class="o">=</span> <span class="n">Proposition</span><span class="p">(</span><span class="s2">&quot;Q&quot;</span><span class="p">)</span>
 
-<span class="n">test_formula</span> <span class="o">=</span> <span class="p">(</span><span class="o">~</span><span class="n">P</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">P</span> <span class="o">&gt;&gt;</span> <span class="n">Q</span><span class="p">))</span> <span class="o">|</span> <span class="n">P</span>
+<span class="n">fml</span> <span class="o">=</span> <span class="p">(</span><span class="o">~</span><span class="n">P</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">P</span> <span class="o">&gt;&gt;</span> <span class="n">Q</span><span class="p">))</span> <span class="o">|</span> <span class="n">P</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">test_formula</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fml</span><span class="p">)</span>
 </code></pre></div>
 <p>Output:</p>
 <div class="highlight"><pre><span></span><code>(¬P ∧ (P → Q)) ∨ P
@@ -828,9 +828,9 @@ Example:</p>
 <span class="n">P</span> <span class="o">=</span> <span class="n">Proposition</span><span class="p">(</span><span class="s2">&quot;P&quot;</span><span class="p">)</span>
 <span class="n">Q</span> <span class="o">=</span> <span class="n">Proposition</span><span class="p">(</span><span class="s2">&quot;Q&quot;</span><span class="p">)</span>
 
-<span class="n">test_formula</span> <span class="o">=</span> <span class="n">Formula</span><span class="p">(</span><span class="n">Or</span><span class="p">(</span><span class="n">And</span><span class="p">(</span><span class="n">Not</span><span class="p">(</span><span class="n">P</span><span class="p">),</span> <span class="n">Implies</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">Q</span><span class="p">)),</span> <span class="n">P</span><span class="p">))</span>
+<span class="n">fml</span> <span class="o">=</span> <span class="n">Formula</span><span class="p">(</span><span class="n">Or</span><span class="p">(</span><span class="n">And</span><span class="p">(</span><span class="n">Not</span><span class="p">(</span><span class="n">P</span><span class="p">),</span> <span class="n">Implies</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">Q</span><span class="p">)),</span> <span class="n">P</span><span class="p">))</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">test_formula</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fml</span><span class="p">)</span>
 </code></pre></div>
 <p>Output:</p>
 <div class="highlight"><pre><span></span><code>(¬P ∧ (P → Q)) ∨ P
