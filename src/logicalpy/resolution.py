@@ -25,9 +25,9 @@ def are_complementary_literals(literal_1: Formula, literal_2: Formula) -> bool:
     if not literal_2.is_literal():
         raise ValueError(f"formula '{literal_2}' is not a literal")
 
-    if literal_2.is_proposition() and literal_1.is_negation() and literal_1.formula.a == literal_2.formula:
+    if literal_2.is_proposition() and literal_1.is_negation() and literal_1._formula.a == literal_2._formula:
         return True
-    elif literal_1.is_proposition() and literal_2.is_negation() and literal_2.formula.a == literal_1.formula:
+    elif literal_1.is_proposition() and literal_2.is_negation() and literal_2._formula.a == literal_1._formula:
         return True
 
     return False
@@ -113,7 +113,7 @@ class ResolutionProver:
 
         # We negate the conclusion and add it to the clauses
 
-        negated_conclusion = Formula(Not(conclusion.formula))
+        negated_conclusion = Formula(Not(conclusion._formula))
 
         negated_conclusion_cnf = to_clausal_cnf(negated_conclusion)
 

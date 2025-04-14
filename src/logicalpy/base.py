@@ -326,21 +326,21 @@ class Formula:
             formula: the formula represented (can be an instance of any of the base connective classes)
 
         """
-        self.formula = formula
+        self._formula = formula
 
     def __str__(self) -> str:
-        formula_str = str(self.formula)
+        formula_str = str(self._formula)
         if formula_str.startswith("(") and formula_str.endswith(")"):  # if there are outer parenthesis, we remove them
             return formula_str[1:-1]
         return formula_str
 
     def __eq__(self, other) -> bool:
         if isinstance(other, Formula):
-            return self.formula == other.formula
+            return self._formula == other._formula
         return False
 
     def __repr__(self) -> str:
-        return f"Formula({repr(self.formula)})"
+        return f"Formula({repr(self._formula)})"
 
     def __hash__(self) -> int:
         return hash(str(self))
@@ -352,7 +352,7 @@ class Formula:
             (str): the LaTex representation of the formula, as inline math
 
         """
-        formula_latex = self.formula.to_latex()
+        formula_latex = self._formula.to_latex()
         if formula_latex.startswith("(") and formula_latex.endswith(
             ")"
         ):  # if there are outer parenthesis, we remove them
@@ -379,7 +379,7 @@ class Formula:
             (set[str]): the set of all the propositions of the formula, each represented by its name (str)
 
         """
-        return self.formula.propositions()
+        return self._formula.propositions()
 
     def is_satisfied(self, valuation: dict[str, bool]) -> bool:
         """Tests whether the formula is satisfied by the truth valuation given
@@ -394,49 +394,49 @@ class Formula:
             ValueError: if the truth value of one of the formula's propositions isn't precised in the valuation given
 
         """
-        return self.formula.is_satisfied(valuation)
+        return self._formula.is_satisfied(valuation)
 
     def is_literal(self) -> bool:
         """Tests whether the formula is a literal, i.e. a proposition or its negation"""
-        if isinstance(self.formula, Proposition):
+        if isinstance(self._formula, Proposition):
             return True
-        elif isinstance(self.formula, Not):
-            if isinstance(self.formula.a, Proposition):
+        elif isinstance(self._formula, Not):
+            if isinstance(self._formula.a, Proposition):
                 return True
         return False
 
     def is_proposition(self) -> bool:
         """Tests whether the formula is only a proposition"""
-        return isinstance(self.formula, Proposition)
+        return isinstance(self._formula, Proposition)
 
     def is_negation(self) -> bool:
         """Tests whether the formula's main connective is a negation"""
-        return isinstance(self.formula, Not)
+        return isinstance(self._formula, Not)
 
     def is_conjunction(self) -> bool:
         """Tests whether the formula's main connective is a conjunction"""
-        return isinstance(self.formula, And)
+        return isinstance(self._formula, And)
 
     def is_disjunction(self) -> bool:
         """Tests whether the formula's main connective is a disjunction"""
-        return isinstance(self.formula, Or)
+        return isinstance(self._formula, Or)
 
     def is_implication(self) -> bool:
         """Tests whether the formula's main connective is an implication"""
-        return isinstance(self.formula, Implies)
+        return isinstance(self._formula, Implies)
 
     def is_bi_implication(self) -> bool:
         """Tests whether the formula's main connective is a bi-implication"""
-        return isinstance(self.formula, BiImplies)
+        return isinstance(self._formula, BiImplies)
 
     def _eliminate_conditionals(self):
-        return Formula(self.formula._eliminate_conditionals())
+        return Formula(self._formula._eliminate_conditionals())
 
     def _move_negations_inward(self):
-        return Formula(self.formula._move_negations_inward())
+        return Formula(self._formula._move_negations_inward())
 
     def _distribute_or_over_and(self):
-        return Formula(self.formula._distribute_or_over_and())
+        return Formula(self._formula._distribute_or_over_and())
 
     def _distribute_and_over_or(self):
-        return Formula(self.formula._distribute_and_over_or())
+        return Formula(self._formula._distribute_and_over_or())

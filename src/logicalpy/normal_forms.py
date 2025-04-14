@@ -196,13 +196,13 @@ def to_clausal_cnf(formula: Formula) -> list[DisjunctiveClause]:
 
     """
 
-    formula = to_cnf(formula).formula  # we are manipulating connectives objects, not Formula objects
+    formula = to_cnf(formula)._formula  # we are manipulating connectives objects, not Formula objects
     conjuncts_list = _find_conjuncts(formula)
 
     list_of_clauses = []
 
     for conjunct in conjuncts_list:
-        list_of_clauses.append(DisjunctiveClause(*_find_disjuncts(conjunct.formula)))
+        list_of_clauses.append(DisjunctiveClause(*_find_disjuncts(conjunct._formula)))
 
     return list_of_clauses
 
@@ -218,12 +218,12 @@ def to_clausal_dnf(formula: Formula) -> list[ConjunctiveClause]:
 
     """
 
-    formula = to_dnf(formula).formula  # we are manipulating connectives objects, not Formula objects
+    formula = to_dnf(formula)._formula  # we are manipulating connectives objects, not Formula objects
     disjuncts_list = _find_disjuncts(formula)
 
     list_of_clauses = []
 
     for disjunct in disjuncts_list:
-        list_of_clauses.append(ConjunctiveClause(*_find_conjuncts(disjunct.formula)))
+        list_of_clauses.append(ConjunctiveClause(*_find_conjuncts(disjunct._formula)))
 
     return list_of_clauses
