@@ -34,7 +34,9 @@ class Proposition:
         try:
             return valuation[self.name]
         except KeyError:
-            raise ValueError(f"proposition '{self.name}' is not associated with a value")
+            raise ValueError(
+                f"proposition '{self.name}' is not associated with a value"
+            )
 
     def __and__(self, other):
         return And(self, other)
@@ -111,9 +113,15 @@ class Not:
         if isinstance(self.a, Not):  # double negation elimination
             return self.a.a._move_negations_inward()
         elif isinstance(self.a, And):  # De Morgan's law #1 (~(A & B) <-> ~A v ~B)
-            return Or(Not(self.a.a)._move_negations_inward(), Not(self.a.b)._move_negations_inward())
+            return Or(
+                Not(self.a.a)._move_negations_inward(),
+                Not(self.a.b)._move_negations_inward(),
+            )
         elif isinstance(self.a, Or):  # De Morgan's law #2 (~(A v B) <-> ~A & ~B)
-            return And(Not(self.a.a)._move_negations_inward(), Not(self.a.b)._move_negations_inward())
+            return And(
+                Not(self.a.a)._move_negations_inward(),
+                Not(self.a.b)._move_negations_inward(),
+            )
         else:  # matches no rule
             return self
 
@@ -125,8 +133,6 @@ class Not:
 
 
 class _TwoPlaceConnective:
-    """A general class for all two places logical connectives (not meant for actual use)"""
-
     CONNECTIVE_SYMBOL = None  # not defined in the base class
     LATEX_SYMBOL = None  # same
 
@@ -164,16 +170,28 @@ class _TwoPlaceConnective:
         return Not(self)
 
     def _eliminate_conditionals(self):
-        return type(self)(self.a._eliminate_conditionals(), self.b._eliminate_conditionals())
+        return type(self)(
+            self.a._eliminate_conditionals(),
+            self.b._eliminate_conditionals(),
+        )
 
     def _move_negations_inward(self):
-        return type(self)(self.a._move_negations_inward(), self.b._move_negations_inward())
+        return type(self)(
+            self.a._move_negations_inward(),
+            self.b._move_negations_inward(),
+        )
 
     def _distribute_or_over_and(self):
-        return type(self)(self.a._distribute_or_over_and(), self.b._distribute_or_over_and())
+        return type(self)(
+            self.a._distribute_or_over_and(),
+            self.b._distribute_or_over_and(),
+        )
 
     def _distribute_and_over_or(self):
-        return type(self)(self.a._distribute_and_over_or(), self.b._distribute_and_over_or())
+        return type(self)(
+            self.a._distribute_and_over_or(),
+            self.b._distribute_and_over_or(),
+        )
 
 
 class And(_TwoPlaceConnective):
@@ -192,11 +210,20 @@ class And(_TwoPlaceConnective):
 
     def _distribute_and_over_or(self):
         if isinstance(self.b, Or):
-            return Or(And(self.a, self.b.a)._distribute_and_over_or(), And(self.a, self.b.b)._distribute_and_over_or())
+            return Or(
+                And(self.a, self.b.a)._distribute_and_over_or(),
+                And(self.a, self.b.b)._distribute_and_over_or(),
+            )
         elif isinstance(self.a, Or):
-            return Or(And(self.b, self.a.a)._distribute_and_over_or(), And(self.b, self.a.b)._distribute_and_over_or())
+            return Or(
+                And(self.b, self.a.a)._distribute_and_over_or(),
+                And(self.b, self.a.b)._distribute_and_over_or(),
+            )
         else:
-            return And(self.a._distribute_and_over_or(), self.b._distribute_and_over_or())
+            return And(
+                self.a._distribute_and_over_or(),
+                self.b._distribute_and_over_or(),
+            )
 
 
 class Or(_TwoPlaceConnective):
@@ -215,11 +242,20 @@ class Or(_TwoPlaceConnective):
 
     def _distribute_or_over_and(self):
         if isinstance(self.b, And):
-            return And(Or(self.a, self.b.a)._distribute_or_over_and(), Or(self.a, self.b.b)._distribute_or_over_and())
+            return And(
+                Or(self.a, self.b.a)._distribute_or_over_and(),
+                Or(self.a, self.b.b)._distribute_or_over_and(),
+            )
         elif isinstance(self.a, And):
-            return And(Or(self.b, self.a.a)._distribute_or_over_and(), Or(self.b, self.a.b)._distribute_or_over_and())
+            return And(
+                Or(self.b, self.a.a)._distribute_or_over_and(),
+                Or(self.b, self.a.b)._distribute_or_over_and(),
+            )
         else:
-            return Or(self.a._distribute_or_over_and(), self.b._distribute_or_over_and())
+            return Or(
+                self.a._distribute_or_over_and(),
+                self.b._distribute_or_over_and(),
+            )
 
 
 class Implies(_TwoPlaceConnective):
@@ -237,7 +273,10 @@ class Implies(_TwoPlaceConnective):
         return (not self.a.is_satisfied(valuation)) or self.b.is_satisfied(valuation)
 
     def _eliminate_conditionals(self):
-        return Or(Not(self.a._eliminate_conditionals()), self.b._eliminate_conditionals())
+        return Or(
+            Not(self.a._eliminate_conditionals()),
+            self.b._eliminate_conditionals(),
+        )
 
 
 class BiImplies(_TwoPlaceConnective):
@@ -287,13 +326,25 @@ def _interpret_formula_tree(tree: lark.Tree):
     if tree.data == "negation":
         return Not(_interpret_formula_tree(tree.children[0]))
     if tree.data == "disjunction":
-        return Or(_interpret_formula_tree(tree.children[0]), _interpret_formula_tree(tree.children[1]))
+        return Or(
+            _interpret_formula_tree(tree.children[0]),
+            _interpret_formula_tree(tree.children[1]),
+        )
     if tree.data == "conjunction":
-        return And(_interpret_formula_tree(tree.children[0]), _interpret_formula_tree(tree.children[1]))
+        return And(
+            _interpret_formula_tree(tree.children[0]),
+            _interpret_formula_tree(tree.children[1]),
+        )
     if tree.data == "implication":
-        return Implies(_interpret_formula_tree(tree.children[0]), _interpret_formula_tree(tree.children[1]))
+        return Implies(
+            _interpret_formula_tree(tree.children[0]),
+            _interpret_formula_tree(tree.children[1]),
+        )
     if tree.data == "biconditional":
-        return BiImplies(_interpret_formula_tree(tree.children[0]), _interpret_formula_tree(tree.children[1]))
+        return BiImplies(
+            _interpret_formula_tree(tree.children[0]),
+            _interpret_formula_tree(tree.children[1]),
+        )
     if tree.data == "formula":
         return _interpret_formula_tree(tree.children[0])
 
@@ -330,7 +381,9 @@ class Formula:
 
     def __str__(self) -> str:
         formula_str = str(self._formula)
-        if formula_str.startswith("(") and formula_str.endswith(")"):  # if there are outer parenthesis, we remove them
+        if formula_str.startswith("(") and formula_str.endswith(
+            ")"
+        ):  # if there are outer parenthesis, we remove them
             return formula_str[1:-1]
         return formula_str
 

@@ -39,18 +39,29 @@ class TruthTable:
         formula_props = sorted(list(self.formula.propositions()))
         table_headers = formula_props + [str(self.formula)]
 
-        truth_valuations_possible = product((True, False), repeat=len(formula_props))
+        truth_valuations_possible = product(
+            (True, False),
+            repeat=len(formula_props),
+        )
 
         for valuation in truth_valuations_possible:
-            valuation_dict = {prop: value for (prop, value) in zip(formula_props, valuation)}
+            valuation_dict = {
+                prop: value for (prop, value) in zip(formula_props, valuation)
+            }
             if self.formula.is_satisfied(valuation_dict):
                 truth_value = "T"
             else:
                 truth_value = "F"
 
-            table_data.append(["T" if val is True else "F" for val in valuation] + [truth_value])
+            table_data.append(
+                ["T" if val is True else "F" for val in valuation] + [truth_value]
+            )
 
-        self._str_table = tabulate(table_data, headers=table_headers, tablefmt="simple")
+        self._str_table = tabulate(
+            table_data,
+            headers=table_headers,
+            tablefmt="simple",
+        )
         return self._str_table
 
     def __str__(self) -> str:
@@ -75,18 +86,29 @@ class TruthTable:
         formula_props = sorted(list(self.formula.propositions()))
         table_headers = formula_props + [str(self.formula)]
 
-        truth_valuations_possible = product((True, False), repeat=len(formula_props))
+        truth_valuations_possible = product(
+            (True, False),
+            repeat=len(formula_props),
+        )
 
         for valuation in truth_valuations_possible:
-            valuation_dict = {prop: value for (prop, value) in zip(formula_props, valuation)}
+            valuation_dict = {
+                prop: value for (prop, value) in zip(formula_props, valuation)
+            }
             if self.formula.is_satisfied(valuation_dict):
                 truth_value = "T"
             else:
                 truth_value = "F"
 
-            table_data.append(["T" if val is True else "F" for val in valuation] + [truth_value])
+            table_data.append(
+                ["T" if val is True else "F" for val in valuation] + [truth_value]
+            )
 
-        self._str_table = tabulate(table_data, headers=table_headers, tablefmt="github")
+        self._str_table = tabulate(
+            table_data,
+            headers=table_headers,
+            tablefmt="github",
+        )
         return self._str_table
 
     def to_latex(self) -> str:
@@ -104,27 +126,43 @@ class TruthTable:
         formula_props = sorted(list(self.formula.propositions()))
         table_headers = formula_props + [self.formula.to_latex()]
 
-        truth_valuations_possible = product((True, False), repeat=len(formula_props))
+        truth_valuations_possible = product(
+            (True, False),
+            repeat=len(formula_props),
+        )
 
         for valuation in truth_valuations_possible:
-            valuation_dict = {prop: value for (prop, value) in zip(formula_props, valuation)}
+            valuation_dict = {
+                prop: value for (prop, value) in zip(formula_props, valuation)
+            }
             if self.formula.is_satisfied(valuation_dict):
                 truth_value = "T"
             else:
                 truth_value = "F"
 
-            table_data.append(["T" if val is True else "F" for val in valuation] + [truth_value])
+            table_data.append(
+                ["T" if val is True else "F" for val in valuation] + [truth_value]
+            )
 
-        latex_result = tabulate(table_data, headers=table_headers, tablefmt="latex_raw")
+        latex_result = tabulate(
+            table_data,
+            headers=table_headers,
+            tablefmt="latex_raw",
+        )
         # Add vertical bars between columns and remove very first horizontal bar
         latex_result = re.sub(
             r"begin\{tabular\}\{.+\}\n\\hline",
-            r"begin{tabular}{" + "|".join(["c" for _ in range(len(table_headers))]) + "}",
+            r"begin{tabular}{"
+            + "|".join(["c" for _ in range(len(table_headers))])
+            + "}",
             latex_result,
             count=1,
         )
         # Remove last horizontal bar
-        latex_result = latex_result.replace(r"\hline" + "\n" + r"\end{tabular}", r"\end{tabular}")
+        latex_result = latex_result.replace(
+            r"\hline" + "\n" + r"\end{tabular}",
+            r"\end{tabular}",
+        )
         self._latex_table = latex_result
         return self._latex_table
 
@@ -145,7 +183,9 @@ def is_tautology(formula: Formula) -> bool:
     truth_valuations_possible = product((False, True), repeat=len(formula_props))
 
     for valuation in truth_valuations_possible:
-        valuation_dict = {prop: value for (prop, value) in zip(formula_props, valuation)}
+        valuation_dict = {
+            prop: value for (prop, value) in zip(formula_props, valuation)
+        }
         if not formula.is_satisfied(valuation_dict):
             return False
     return True
@@ -167,7 +207,9 @@ def is_satisfiable(formula: Formula) -> bool:
     truth_valuations_possible = product((False, True), repeat=len(formula_props))
 
     for valuation in truth_valuations_possible:
-        valuation_dict = {prop: value for (prop, value) in zip(formula_props, valuation)}
+        valuation_dict = {
+            prop: value for (prop, value) in zip(formula_props, valuation)
+        }
         if formula.is_satisfied(valuation_dict):
             return True
     return False
@@ -190,13 +232,19 @@ def are_equivalent(formula_1: Formula, formula_2: Formula) -> bool:
     truth_valuations_possible = product((False, True), repeat=len(formula_props))
 
     for valuation in truth_valuations_possible:
-        valuation_dict = {prop: value for (prop, value) in zip(formula_props, valuation)}
-        if formula_1.is_satisfied(valuation_dict) != formula_2.is_satisfied(valuation_dict):
+        valuation_dict = {
+            prop: value for (prop, value) in zip(formula_props, valuation)
+        }
+        if formula_1.is_satisfied(valuation_dict) != formula_2.is_satisfied(
+            valuation_dict
+        ):
             return False
     return True
 
 
-def are_jointly_satisfiable(*formulae: Formula) -> bool:
+def are_jointly_satisfiable(
+    *formulae: Formula,
+) -> bool:
     """Tests whether several formulae are jointly satisfiable
 
     Args:
@@ -225,7 +273,9 @@ def are_jointly_satisfiable(*formulae: Formula) -> bool:
     return False
 
 
-def one_satisfying_valuation(formula: Formula) -> Optional[dict[str, bool]]:
+def one_satisfying_valuation(
+    formula: Formula,
+) -> Optional[dict[str, bool]]:
     """Returns one valuation that satisfies the formula given
 
     Args:
@@ -241,13 +291,17 @@ def one_satisfying_valuation(formula: Formula) -> Optional[dict[str, bool]]:
     truth_valuations_possible = product((False, True), repeat=len(formula_props))
 
     for valuation in truth_valuations_possible:
-        valuation_dict = {prop: value for (prop, value) in zip(formula_props, valuation)}
+        valuation_dict = {
+            prop: value for (prop, value) in zip(formula_props, valuation)
+        }
         if formula.is_satisfied(valuation_dict):
             return valuation_dict
     return None
 
 
-def all_satisfying_valuations(formula: Formula) -> list[dict[str, bool]]:
+def all_satisfying_valuations(
+    formula: Formula,
+) -> list[dict[str, bool]]:
     """Returns all the valuations that satisfy the formula given
 
     Args:
@@ -266,13 +320,18 @@ def all_satisfying_valuations(formula: Formula) -> list[dict[str, bool]]:
     satisfying_valuations = []
 
     for valuation in truth_valuations_possible:
-        valuation_dict = {prop: value for (prop, value) in zip(formula_props, valuation)}
+        valuation_dict = {
+            prop: value for (prop, value) in zip(formula_props, valuation)
+        }
         if formula.is_satisfied(valuation_dict):
             satisfying_valuations.append(valuation_dict)
     return satisfying_valuations
 
 
-def is_valid_argument(premises: Iterable[Formula], conclusion: Formula) -> bool:
+def is_valid_argument(
+    premises: Iterable[Formula],
+    conclusion: Formula,
+) -> bool:
     """Tests whether an argument is (semantically) valid, i.e. whether the premises given entail the conclusion given
 
     Args:
@@ -294,12 +353,16 @@ def is_valid_argument(premises: Iterable[Formula], conclusion: Formula) -> bool:
     truth_valuations_possible = product((False, True), repeat=len(argument_props))
 
     for valuation in truth_valuations_possible:
-        valuation_dict = {prop: value for (prop, value) in zip(argument_props, valuation)}
+        valuation_dict = {
+            prop: value for (prop, value) in zip(argument_props, valuation)
+        }
 
         all_premises_true = True
 
         for premise in premises:
-            if not premise.is_satisfied(valuation_dict):  # at least one premise is False under the current valuation
+            if not premise.is_satisfied(
+                valuation_dict
+            ):  # at least one premise is False under the current valuation
                 all_premises_true = False
                 break
 

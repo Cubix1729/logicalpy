@@ -13,8 +13,17 @@ class TestHilbert(unittest.TestCase):
             ("P v Q", False),
         ]
 
-        for formula_str, expected in test_formulae:
-            self.assertIs(matches_axiom(Formula.from_string(formula_str), test_axiom_schema), expected)
+        for (
+            formula_str,
+            expected,
+        ) in test_formulae:
+            self.assertIs(
+                matches_axiom(
+                    Formula.from_string(formula_str),
+                    test_axiom_schema,
+                ),
+                expected,
+            )
 
     def test_modus_ponens(self):
         test_formulae = [
@@ -26,7 +35,11 @@ class TestHilbert(unittest.TestCase):
             ("S", "(S v D) -> F", None),
         ]
 
-        for formula_str_a, formula_str_b, expected in test_formulae:
+        for (
+            formula_str_a,
+            formula_str_b,
+            expected,
+        ) in test_formulae:
             formula_a = Formula.from_string(formula_str_a)
             formula_b = Formula.from_string(formula_str_b)
             if expected is None:
@@ -35,17 +48,32 @@ class TestHilbert(unittest.TestCase):
 
             else:
                 expected_result = Formula.from_string(expected)
-                self.assertEqual(apply_modus_ponens(formula_a, formula_b), expected_result)
+                self.assertEqual(
+                    apply_modus_ponens(formula_a, formula_b),
+                    expected_result,
+                )
 
     def test_hilbert_proof(self):
         # Proof
-        test_proof = HilbertProof(premises=[], conclusion=Formula.from_string("P -> P"))
-        test_proof.add_axiom_instance(Formula.from_string("P -> ((Q -> P) -> P)"), "A1")
+        test_proof = HilbertProof(
+            premises=[],
+            conclusion=Formula.from_string("P -> P"),
+        )
         test_proof.add_axiom_instance(
-            Formula.from_string("(P -> ((Q -> P) -> P)) -> ((P -> (Q -> P)) -> (P -> P))"), "A2"
+            Formula.from_string("P -> ((Q -> P) -> P)"),
+            "A1",
+        )
+        test_proof.add_axiom_instance(
+            Formula.from_string(
+                "(P -> ((Q -> P) -> P)) -> ((P -> (Q -> P)) -> (P -> P))"
+            ),
+            "A2",
         )
         test_proof.apply_modus_ponens(1, 2)
-        test_proof.add_axiom_instance(Formula.from_string("P -> (Q -> P)"), "A1")
+        test_proof.add_axiom_instance(
+            Formula.from_string("P -> (Q -> P)"),
+            "A1",
+        )
         test_proof.apply_modus_ponens(4, 3)
 
         # Actual tests

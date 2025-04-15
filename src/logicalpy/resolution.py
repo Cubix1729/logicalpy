@@ -1,7 +1,10 @@
 from typing import Iterable, Optional
 from itertools import combinations
 import time
-from .normal_forms import to_clausal_cnf, DisjunctiveClause
+from .normal_forms import (
+    to_clausal_cnf,
+    DisjunctiveClause,
+)
 from .base import Formula, Not
 
 
@@ -25,15 +28,26 @@ def are_complementary_literals(literal_1: Formula, literal_2: Formula) -> bool:
     if not literal_2.is_literal():
         raise ValueError(f"formula '{literal_2}' is not a literal")
 
-    if literal_2.is_proposition() and literal_1.is_negation() and literal_1._formula.a == literal_2._formula:
+    if (
+        literal_2.is_proposition()
+        and literal_1.is_negation()
+        and literal_1._formula.a == literal_2._formula
+    ):
         return True
-    elif literal_1.is_proposition() and literal_2.is_negation() and literal_2._formula.a == literal_1._formula:
+    elif (
+        literal_1.is_proposition()
+        and literal_2.is_negation()
+        and literal_2._formula.a == literal_1._formula
+    ):
         return True
 
     return False
 
 
-def resolve(clause_1: DisjunctiveClause, clause_2: DisjunctiveClause) -> Optional[DisjunctiveClause]:
+def resolve(
+    clause_1: DisjunctiveClause,
+    clause_2: DisjunctiveClause,
+) -> Optional[DisjunctiveClause]:
     """A function for apply the resolution inference rule to two disjunctive clauses
 
     Args:
@@ -60,14 +74,18 @@ def resolve(clause_1: DisjunctiveClause, clause_2: DisjunctiveClause) -> Optiona
                 return DisjunctiveClause(*resulting_literals)
 
 
-def _is_tautology(clause: DisjunctiveClause) -> bool:
+def _is_tautology(
+    clause: DisjunctiveClause,
+) -> bool:
     for literal_1, literal_2 in combinations(clause, 2):
         if are_complementary_literals(literal_1, literal_2):
             return True
     return False
 
 
-def _remove_redundancy(clause: DisjunctiveClause) -> DisjunctiveClause:
+def _remove_redundancy(
+    clause: DisjunctiveClause,
+) -> DisjunctiveClause:
     all_literals = []
     for literal in clause:
         if literal not in all_literals:
@@ -85,7 +103,11 @@ class ResolutionProver:
 
     """
 
-    def __init__(self, premises: Iterable[Formula], conclusion: Formula):
+    def __init__(
+        self,
+        premises: Iterable[Formula],
+        conclusion: Formula,
+    ):
         """The prover's constructor
 
         Args:
@@ -105,7 +127,9 @@ class ResolutionProver:
 
             for clause in cnf_form:
                 clause = _remove_redundancy(clause)
-                if not (_is_tautology(clause) or clause in all_clauses):  # remove tautologies or redundant clauses
+                if not (
+                    _is_tautology(clause) or clause in all_clauses
+                ):  # remove tautologies or redundant clauses
                     all_clauses.append(clause)
 
         # We store the index in the clauses of the last premise clause (so the next one is the start of the negation of the conclusion)
@@ -126,7 +150,9 @@ class ResolutionProver:
         self._refutation_found = False
         self._terminated_without_refutation = False
 
-    def _apply_resolution(self) -> Optional[tuple[DisjunctiveClause, int, int]]:
+    def _apply_resolution(
+        self,
+    ) -> Optional[tuple[DisjunctiveClause, int, int]]:
         """Resolves two clauses if possible and changes `all_clauses` in consideration. The clauses that were resolved are removed, and the resolvent is added.
 
         Returns:
@@ -137,14 +163,20 @@ class ResolutionProver:
 
         # We first look for a contradiction
         for clause_1, clause_2 in combinations(self._all_clauses, 2):
-            if len(clause_1.literals) == len(clause_2.literals) == 1:  # the two clauses only have one literal each
+            if (
+                len(clause_1.literals) == len(clause_2.literals) == 1
+            ):  # the two clauses only have one literal each
                 resolvent = resolve(clause_1, clause_2)
 
                 if resolvent is not None:  # we have found a contradiction
                     self._all_clauses.append(resolvent)
                     self._refutation_found = True
 
-                    return resolvent, self._all_clauses.index(clause_1), self._all_clauses.index(clause_2)
+                    return (
+                        resolvent,
+                        self._all_clauses.index(clause_1),
+                        self._all_clauses.index(clause_2),
+                    )
 
         # We then look for two clauses to be resolved
         for clause_1, clause_2 in combinations(self._all_clauses, 2):
@@ -161,7 +193,11 @@ class ResolutionProver:
                 if resolvent.is_empty():
                     self._refutation_found = True
 
-                return resolvent, self._all_clauses.index(clause_1), self._all_clauses.index(clause_2)
+                return (
+                    resolvent,
+                    self._all_clauses.index(clause_1),
+                    self._all_clauses.index(clause_2),
+                )
 
         self._terminated_without_refutation = True
         return None
@@ -177,7 +213,8 @@ class ResolutionProver:
 
         proof_finished = False
         proof_str = "Resolution proof for argument {0} ∴ {1}\n\n".format(
-            ", ".join([str(premise) for premise in self.premises]), str(self.conclusion)
+            ", ".join([str(premise) for premise in self.premises]),
+            str(self.conclusion),
         )
         line_num = 1
 
@@ -186,14 +223,19 @@ class ResolutionProver:
             line_num += 1
 
         for clause in self._all_clauses[self._premises_end_index :]:
-            proof_str += f"{line_num}. {clause}".ljust(30) + "Negated conclusion clause\n"
+            proof_str += (
+                f"{line_num}. {clause}".ljust(30) + "Negated conclusion clause\n"
+            )
             line_num += 1
 
         while not (self._terminated_without_refutation or self._refutation_found):
             result = self._apply_resolution()
             if result is not None:
                 resolvent, index_1, index_2 = result
-                proof_str += f"{line_num}. {resolvent}".ljust(30) + f"Resolve {index_1 + 1}, {index_2 + 1}\n"
+                proof_str += (
+                    f"{line_num}. {resolvent}".ljust(30)
+                    + f"Resolve {index_1 + 1}, {index_2 + 1}\n"
+                )
             line_num += 1
 
         if self._terminated_without_refutation:

@@ -38,7 +38,9 @@ class DisjunctiveClause:
             return "◻"
 
     def __repr__(self) -> str:
-        return "DisjunctiveClause({})".format(", ".join([repr(literal) for literal in self.literals]))
+        return "DisjunctiveClause({})".format(
+            ", ".join([repr(literal) for literal in self.literals])
+        )
 
     def __eq__(self, other):
         if isinstance(other, DisjunctiveClause):
@@ -88,7 +90,9 @@ class ConjunctiveClause:
             return "◻"
 
     def __repr__(self) -> str:
-        return "ConjunctiveClause({})".format(", ".join([repr(literal) for literal in self.literals]))
+        return "ConjunctiveClause({})".format(
+            ", ".join([repr(literal) for literal in self.literals])
+        )
 
     def __eq__(self, other):
         if isinstance(other, ConjunctiveClause):
@@ -185,7 +189,9 @@ def _find_conjuncts(formula) -> list:
         return [Formula(formula)]
 
 
-def to_clausal_cnf(formula: Formula) -> list[DisjunctiveClause]:
+def to_clausal_cnf(
+    formula: Formula,
+) -> list[DisjunctiveClause]:
     """Converts a formula to conjunctive normal form (CNF) like `to_cnf`, but as a list of disjunctive clauses
 
     Args:
@@ -196,7 +202,9 @@ def to_clausal_cnf(formula: Formula) -> list[DisjunctiveClause]:
 
     """
 
-    formula = to_cnf(formula)._formula  # we are manipulating connectives objects, not Formula objects
+    formula = to_cnf(
+        formula
+    )._formula  # we are manipulating connectives objects, not Formula objects
     conjuncts_list = _find_conjuncts(formula)
 
     list_of_clauses = []
@@ -207,7 +215,9 @@ def to_clausal_cnf(formula: Formula) -> list[DisjunctiveClause]:
     return list_of_clauses
 
 
-def to_clausal_dnf(formula: Formula) -> list[ConjunctiveClause]:
+def to_clausal_dnf(
+    formula: Formula,
+) -> list[ConjunctiveClause]:
     """Converts a formula to disjunctive normal form (DNF) like `to_dnf`, but as a list of conjunctive clauses
 
     Args:
@@ -218,7 +228,9 @@ def to_clausal_dnf(formula: Formula) -> list[ConjunctiveClause]:
 
     """
 
-    formula = to_dnf(formula)._formula  # we are manipulating connectives objects, not Formula objects
+    formula = to_dnf(
+        formula
+    )._formula  # we are manipulating connectives objects, not Formula objects
     disjuncts_list = _find_disjuncts(formula)
 
     list_of_clauses = []

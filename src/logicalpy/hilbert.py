@@ -24,7 +24,9 @@ The axioms schema are the following:
 """
 
 
-def _make_regex_from_formula(formula: Formula) -> str:
+def _make_regex_from_formula(
+    formula: Formula,
+) -> str:
     formula_props = formula.propositions()
     formula_str = str(formula)
     formula_str = formula_str.replace("(", r"\(").replace(")", r"\)")
@@ -32,7 +34,11 @@ def _make_regex_from_formula(formula: Formula) -> str:
         # For every proposition in the formula, we first replace its *first* occurrence by a regex definition
         formula_str = formula_str.replace(prop, f"(?P<{prop}>.*)", 1)
         # We then replace the *other* occurrences of the propositions by backreferences
-        formula_str = re.sub(f"([\\s\\(])({prop})", r"\1(?P=\2)", formula_str)
+        formula_str = re.sub(
+            f"([\\s\\(])({prop})",
+            r"\1(?P=\2)",
+            formula_str,
+        )
     return formula_str
 
 
@@ -74,7 +80,9 @@ def apply_modus_ponens(formula_a: Formula, formula_b: Formula) -> Formula:
         if formula_b._formula.a == formula_a._formula:
             return Formula(formula_b._formula.b)
 
-    raise ValueError(f"cannot apply Modus Ponens to formulae '{formula_a}' and '{formula_b}'")
+    raise ValueError(
+        f"cannot apply Modus Ponens to formulae '{formula_a}' and '{formula_b}'"
+    )
 
 
 class HilbertProof:
@@ -87,7 +95,12 @@ class HilbertProof:
 
     """
 
-    def __init__(self, premises: Iterable[Formula], conclusion: Formula, axiom_system: list[Formula] = P2_AXIOM_SYSTEM):
+    def __init__(
+        self,
+        premises: Iterable[Formula],
+        conclusion: Formula,
+        axiom_system: list[Formula] = P2_AXIOM_SYSTEM,
+    ):
         """The constructor of the proof
 
         Args:
@@ -113,7 +126,9 @@ class HilbertProof:
 
         """
         if premise not in self.premises:
-            raise ValueError(f"premise '{premise}' is not in the premises of the argument to prove")
+            raise ValueError(
+                f"premise '{premise}' is not in the premises of the argument to prove"
+            )
 
         self._lines.append((premise, "Premise"))
 
@@ -133,7 +148,9 @@ class HilbertProof:
             raise ValueError(f"axiom schema '{axiom_name}' does not exist")
         axiom_formula = self.axiom_system[axiom_name]
         if not matches_axiom(formula, axiom_formula):
-            raise ValueError(f"formula '{formula}' is not an instance of axiom schema '{axiom_name}'")
+            raise ValueError(
+                f"formula '{formula}' is not an instance of axiom schema '{axiom_name}'"
+            )
         self._lines.append((formula, axiom_name))
 
     def apply_modus_ponens(self, line_num_a: int, line_num_b: int):
@@ -153,7 +170,12 @@ class HilbertProof:
         formula_a = self._lines[line_num_a - 1][0]
         formula_b = self._lines[line_num_b - 1][0]
         resulting_formula = apply_modus_ponens(formula_a, formula_b)
-        self._lines.append((resulting_formula, f"MP {line_num_a}, {line_num_b}"))
+        self._lines.append(
+            (
+                resulting_formula,
+                f"MP {line_num_a}, {line_num_b}",
+            )
+        )
 
     def remove_line(self, line_index: int):
         """Removes a line with the line number given from the proof
@@ -166,7 +188,10 @@ class HilbertProof:
 
     def __str__(self) -> str:
         result_lines = []
-        for line_index, (formula, justification) in enumerate(self._lines):
+        for line_index, (
+            formula,
+            justification,
+        ) in enumerate(self._lines):
             line_str = f"{line_index + 1}. {formula}".ljust(50)
             line_str += justification
             result_lines.append(line_str)
