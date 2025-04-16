@@ -8,18 +8,18 @@ P2_AXIOM_SYSTEM = {
     "A2": Formula.from_string("(A -> (B -> C)) -> ((A -> B) -> (A -> C))"),
     "A3": Formula.from_string("(~A -> ~B) -> (B -> A)"),
 }
-"""The default axiom system for Hilbert proofs.
+r"""The default axiom system for Hilbert proofs.
 
 It is Łukasiewicz's third axiom system, called later P₂ by Alonzo Church, who
 popularised it.
 
-The axioms schema are the following:
+The axiom schemata are the following:
 
- - A1: $\\phi \\to (\psi \\to \\phi)$
+ - A1: $\phi \to (\psi \to \phi)$
 
- - A2: $(\\phi \\to (\\psi \\to \\chi)) \\to ((\\phi \\to \\psi) \\to (\\phi \\to \\chi))$
+ - A2: $(\phi \to (\psi \to \chi)) \to ((\phi \to \psi) \to (\phi \to \chi))$
 
- - A3: $(\\neg \\phi \\to \\neg \\psi) \\to (\\psi \\to \\phi)$
+ - A3: $(\neg \phi \to \neg \psi) \to (\psi \to \phi)$
 
 """
 
@@ -59,7 +59,7 @@ def matches_axiom(formula: Formula, axiom_schema: Formula) -> bool:
 
 
 def apply_modus_ponens(formula_a: Formula, formula_b: Formula) -> Formula:
-    """Applies Modus Ponens inference rule ($A, A \\to B \\therefore B$) to two formulae to derive a conclusion
+    """Applies Modus Ponens inference rule ($A, A \to B \therefore B$) to two formulae to derive a conclusion
 
     Args:
         formula_a (Formula): the first formula
