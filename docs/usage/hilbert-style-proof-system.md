@@ -9,7 +9,7 @@ Its constructor takes as its arguments the premises and the conclusion of the ar
 The default axiom system used is Jan Łukasiewicz's third axiom system,
 called later P$_2$ by Alonzo Church, who popularised it.
 
-The axiom schemata are the following:
+The axiom schemata are the following (indicated with Greek letters to differentiate them from simple formulae):
 
  - A1: $\phi \to (\psi \to \phi)$
 
@@ -20,7 +20,7 @@ The axiom schemata are the following:
 The inference rule used is Modus Ponens:
 
 $$
-A, A \to B \therefore B
+\frac{A, A \to B}{B}
 $$
 
 To add a line with one of the premises in the proof, use the `add_premise_line(premise)` method.
@@ -38,9 +38,9 @@ Example interactive proof of $A \to A$:
 >>> print(p)
 1. A → ((B → A) → A)                                        A1
 >>> p.add_axiom_instance(Formula((A >> ((B >> A) >> A)) >> ((A >> (B >> A)) >> (A >> A))), "A2")
+>>> print(p)
 1. A → ((B → A) → A)                                        A1
 2. (A → ((B → A) → A)) → ((A → (B → A)) → (A → A))          A2
->>> print(p)
 >>> p.apply_modus_ponens(1, 2)
 >>> print(p)
 1. A → ((B → A) → A)                                        A1
@@ -74,3 +74,42 @@ With a LaTex compiler, it would render like this:
 
 ![LaTex Rendering](./hilbert_style_proof_example.svg){: style="height:180px;width:578px"}
 
+## Creating a new axiom system
+
+In order to use an axiom system that is not the default one, you will need to create it.
+An axiom system consists in LogicalPy of a `dict` mapping each axiom schema name (`str`) to its `Formula`.
+
+!!! note
+    Formulae given to create an axiom system will be treated as axiom schemata.
+
+As an example, we will define Frege's axiom system.
+Here are the axiom schemata:
+
+ - $\phi \to (\psi \to \phi)$
+ - $(\phi \to (\psi \to \chi)) \to ((\phi \to \psi) \to (\psi \to \chi))$
+ - $(\phi \to (\psi \to \chi)) \to (\psi \to (\phi \to \chi))$
+ - $(\phi \to \psi) \to (\neg \psi \to \neg \phi)$
+ - $\neg \neg \phi \to \phi$
+ - $\phi \to \neg \neg \phi$
+
+In the Python implementation, we will name them A1, A2, A3 and so on up to A6.
+
+```python
+>>> from logicalpy import Formula
+>>> frege_axiom_system = {
+...    "A1": Formula.from_string("A -> (B -> A)"),
+...    "A2": Formula.from_string("(A -> (B -> C)) -> ((A -> B) -> (A -> C))"),
+...    "A3": Formula.from_string("(A -> (B -> C)) -> (B -> (A -> C))"),
+...    "A4": Formula.from_string("(A -> B) -> (~B -> ~A)"),
+...    "A5": Formula.from_string("~~A -> A"),
+...    "A6": Formula.from_string("A -> ~~A"),
+...}
+>>> from logicalpy.hilbert import HilbertProof
+>>> # Then you can use the system to make a proof
+>>> # if you precise axiom_system=frege_axiom_system
+>>> # when constructing the HilbertProof
+```
+
+<br>
+
+For a complete reference of the `hilbert` sub-module, see the [corresponding API reference](../api-reference/logicalpy/hilbert.md).
