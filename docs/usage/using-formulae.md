@@ -14,10 +14,30 @@ $(P \to (\neg P \land P)) \lor Q$
 
 The above LaTex would render as follow: $(P \to (\neg P \land P)) \lor Q$
 
+## Equality testing
+
+Two formulae can be tested for equality with the normal Python equality testing syntax.
+Example:
+
+```python
+>>> from logicalpy import Formula
+>>> Formula.from_string("A & B") == Formula.from_string("A -> C")
+False
+>>> Formula.from_string("A v (B v C)") == Formula.from_string("A | (B | C)")
+True
+```
+
+!!! note
+    This only tests if the propositions are ***exactly*** the same.
+    For instance, two semantically equivalent formulae but with different structures will not
+    be considered equal.
+    Likewise, formulae with the same structure but with different proposition
+    names will not be considered equal.
+
 ## Formula Propositions
 
-You can get the set of all the propositions of a formula (with every proposition represented by its name) with
-the `propositions()` method of the `Formula` class:
+You can get the set of all the propositions of a formula with every proposition represented by its
+name (`str`) using the `propositions()` method of `Formula` objects:
 
 ```python
 >>> from logicalpy import Formula
