@@ -59,7 +59,7 @@ def matches_axiom(formula: Formula, axiom_schema: Formula) -> bool:
 
 
 def apply_modus_ponens(formula_a: Formula, formula_b: Formula) -> Formula:
-    """Applies Modus Ponens inference rule ($A, A \to B \therefore B$) to two formulae to derive a conclusion
+    r"""Applies Modus Ponens inference rule ($A, A \to B \therefore B$) to two formulae to derive a conclusion
 
     Args:
         formula_a (Formula): the first formula
@@ -192,7 +192,7 @@ class HilbertProof:
             formula,
             justification,
         ) in enumerate(self._lines):
-            line_str = f"{line_index + 1}. {formula}".ljust(50)
+            line_str = f"{line_index + 1}. {formula}".ljust(60)
             line_str += justification
             result_lines.append(line_str)
         return "\n".join(result_lines)

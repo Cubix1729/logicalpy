@@ -80,11 +80,11 @@ class TestHilbert(unittest.TestCase):
         self.assertIs(test_proof.goal_accomplished(), True)
         self.assertEqual(
             str(test_proof),
-            """1. P → ((Q → P) → P)                              A1
-2. (P → ((Q → P) → P)) → ((P → (Q → P)) → (P → P))A2
-3. (P → (Q → P)) → (P → P)                        MP 1, 2
-4. P → (Q → P)                                    A1
-5. P → P                                          MP 4, 3""",
+            """1. P → ((Q → P) → P)                                        A1
+2. (P → ((Q → P) → P)) → ((P → (Q → P)) → (P → P))          A2
+3. (P → (Q → P)) → (P → P)                                  MP 1, 2
+4. P → (Q → P)                                              A1
+5. P → P                                                    MP 4, 3""",
         )
         self.assertEqual(
             test_proof.to_latex(),
