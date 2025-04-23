@@ -9,7 +9,7 @@
       
       
       
-        <link rel="prev" href="../base/">
+        <link rel="prev" href="../hilbert/">
       
       
         <link rel="next" href="../resolution/">
@@ -410,6 +410,28 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../usage/hilbert-style-proof-system/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hilbert-Style Proof System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../usage/resolution-theorem-proving/" class="md-nav__link">
         
   
@@ -528,6 +550,28 @@
   
   <span class="md-ellipsis">
     base
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hilbert/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hilbert
     
   </span>
   
@@ -1019,54 +1063,56 @@
 
               <details class="quote">
                 <summary>Source code in <code>src\logicalpy\normal_forms.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">52</span>
-<span class="normal">53</span>
-<span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span>
-<span class="normal">66</span>
-<span class="normal">67</span>
-<span class="normal">68</span>
-<span class="normal">69</span>
-<span class="normal">70</span>
-<span class="normal">71</span>
-<span class="normal">72</span>
-<span class="normal">73</span>
-<span class="normal">74</span>
-<span class="normal">75</span>
-<span class="normal">76</span>
-<span class="normal">77</span>
-<span class="normal">78</span>
-<span class="normal">79</span>
-<span class="normal">80</span>
-<span class="normal">81</span>
-<span class="normal">82</span>
-<span class="normal">83</span>
-<span class="normal">84</span>
-<span class="normal">85</span>
-<span class="normal">86</span>
-<span class="normal">87</span>
-<span class="normal">88</span>
-<span class="normal">89</span>
-<span class="normal">90</span>
-<span class="normal">91</span>
-<span class="normal">92</span>
-<span class="normal">93</span>
-<span class="normal">94</span>
-<span class="normal">95</span>
-<span class="normal">96</span>
-<span class="normal">97</span>
-<span class="normal">98</span>
-<span class="normal">99</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ConjunctiveClause</span><span class="p">:</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ConjunctiveClause</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A class for representing a conjunctive clause</span>
 
 <span class="sd">    Attributes:</span>
@@ -1105,7 +1151,9 @@
             <span class="k">return</span> <span class="s2">&quot;◻&quot;</span>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">&quot;ConjunctiveClause(</span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">repr</span><span class="p">(</span><span class="n">literal</span><span class="p">)</span> <span class="k">for</span> <span class="n">literal</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">literals</span><span class="p">]))</span>
+        <span class="k">return</span> <span class="s2">&quot;ConjunctiveClause(</span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">repr</span><span class="p">(</span><span class="n">literal</span><span class="p">)</span> <span class="k">for</span> <span class="n">literal</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">literals</span><span class="p">])</span>
+        <span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">ConjunctiveClause</span><span class="p">):</span>
@@ -1199,9 +1247,7 @@
 
             <details class="quote">
               <summary>Source code in <code>src\logicalpy\normal_forms.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">65</span>
 <span class="normal">66</span>
 <span class="normal">67</span>
 <span class="normal">68</span>
@@ -1212,7 +1258,9 @@
 <span class="normal">73</span>
 <span class="normal">74</span>
 <span class="normal">75</span>
-<span class="normal">76</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">literals</span><span class="p">:</span> <span class="n">Formula</span><span class="p">):</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">literals</span><span class="p">:</span> <span class="n">Formula</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The clause&#39;s constructor</span>
 
 <span class="sd">    Args:</span>
@@ -1248,9 +1296,9 @@
 
             <details class="quote">
               <summary>Source code in <code>src\logicalpy\normal_forms.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">78</span>
-<span class="normal">79</span>
-<span class="normal">80</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">is_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">is_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Tests whether the clause is empty&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">literals</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
 </code></pre></div></td></tr></table></div>
@@ -1360,7 +1408,9 @@
 <span class="normal">46</span>
 <span class="normal">47</span>
 <span class="normal">48</span>
-<span class="normal">49</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">DisjunctiveClause</span><span class="p">:</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">DisjunctiveClause</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A class for representing a disjunctive clause</span>
 
 <span class="sd">    Attributes:</span>
@@ -1396,7 +1446,9 @@
             <span class="k">return</span> <span class="s2">&quot;◻&quot;</span>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">&quot;DisjunctiveClause(</span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">repr</span><span class="p">(</span><span class="n">literal</span><span class="p">)</span> <span class="k">for</span> <span class="n">literal</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">literals</span><span class="p">]))</span>
+        <span class="k">return</span> <span class="s2">&quot;DisjunctiveClause(</span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">repr</span><span class="p">(</span><span class="n">literal</span><span class="p">)</span> <span class="k">for</span> <span class="n">literal</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">literals</span><span class="p">])</span>
+        <span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">DisjunctiveClause</span><span class="p">):</span>
@@ -1629,11 +1681,7 @@
 
             <details class="quote">
               <summary>Source code in <code>src\logicalpy\normal_forms.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">188</span>
-<span class="normal">189</span>
-<span class="normal">190</span>
-<span class="normal">191</span>
-<span class="normal">192</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">192</span>
 <span class="normal">193</span>
 <span class="normal">194</span>
 <span class="normal">195</span>
@@ -1648,7 +1696,17 @@
 <span class="normal">204</span>
 <span class="normal">205</span>
 <span class="normal">206</span>
-<span class="normal">207</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">to_clausal_cnf</span><span class="p">(</span><span class="n">formula</span><span class="p">:</span> <span class="n">Formula</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">DisjunctiveClause</span><span class="p">]:</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">to_clausal_cnf</span><span class="p">(</span>
+    <span class="n">formula</span><span class="p">:</span> <span class="n">Formula</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">DisjunctiveClause</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts a formula to conjunctive normal form (CNF) like `to_cnf`, but as a list of disjunctive clauses</span>
 
 <span class="sd">    Args:</span>
@@ -1659,13 +1717,15 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">formula</span> <span class="o">=</span> <span class="n">to_cnf</span><span class="p">(</span><span class="n">formula</span><span class="p">)</span><span class="o">.</span><span class="n">formula</span>  <span class="c1"># we are manipulating connectives objects, not Formula objects</span>
+    <span class="n">formula</span> <span class="o">=</span> <span class="n">to_cnf</span><span class="p">(</span>
+        <span class="n">formula</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">_formula</span>  <span class="c1"># we are manipulating connectives objects, not Formula objects</span>
     <span class="n">conjuncts_list</span> <span class="o">=</span> <span class="n">_find_conjuncts</span><span class="p">(</span><span class="n">formula</span><span class="p">)</span>
 
     <span class="n">list_of_clauses</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">for</span> <span class="n">conjunct</span> <span class="ow">in</span> <span class="n">conjuncts_list</span><span class="p">:</span>
-        <span class="n">list_of_clauses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">DisjunctiveClause</span><span class="p">(</span><span class="o">*</span><span class="n">_find_disjuncts</span><span class="p">(</span><span class="n">conjunct</span><span class="o">.</span><span class="n">formula</span><span class="p">)))</span>
+        <span class="n">list_of_clauses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">DisjunctiveClause</span><span class="p">(</span><span class="o">*</span><span class="n">_find_disjuncts</span><span class="p">(</span><span class="n">conjunct</span><span class="o">.</span><span class="n">_formula</span><span class="p">)))</span>
 
     <span class="k">return</span> <span class="n">list_of_clauses</span>
 </code></pre></div></td></tr></table></div>
@@ -1744,15 +1804,7 @@
 
             <details class="quote">
               <summary>Source code in <code>src\logicalpy\normal_forms.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">210</span>
-<span class="normal">211</span>
-<span class="normal">212</span>
-<span class="normal">213</span>
-<span class="normal">214</span>
-<span class="normal">215</span>
-<span class="normal">216</span>
-<span class="normal">217</span>
-<span class="normal">218</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">218</span>
 <span class="normal">219</span>
 <span class="normal">220</span>
 <span class="normal">221</span>
@@ -1763,7 +1815,21 @@
 <span class="normal">226</span>
 <span class="normal">227</span>
 <span class="normal">228</span>
-<span class="normal">229</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">to_clausal_dnf</span><span class="p">(</span><span class="n">formula</span><span class="p">:</span> <span class="n">Formula</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">ConjunctiveClause</span><span class="p">]:</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">to_clausal_dnf</span><span class="p">(</span>
+    <span class="n">formula</span><span class="p">:</span> <span class="n">Formula</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">ConjunctiveClause</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts a formula to disjunctive normal form (DNF) like `to_dnf`, but as a list of conjunctive clauses</span>
 
 <span class="sd">    Args:</span>
@@ -1774,13 +1840,15 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">formula</span> <span class="o">=</span> <span class="n">to_dnf</span><span class="p">(</span><span class="n">formula</span><span class="p">)</span><span class="o">.</span><span class="n">formula</span>  <span class="c1"># we are manipulating connectives objects, not Formula objects</span>
+    <span class="n">formula</span> <span class="o">=</span> <span class="n">to_dnf</span><span class="p">(</span>
+        <span class="n">formula</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">_formula</span>  <span class="c1"># we are manipulating connectives objects, not Formula objects</span>
     <span class="n">disjuncts_list</span> <span class="o">=</span> <span class="n">_find_disjuncts</span><span class="p">(</span><span class="n">formula</span><span class="p">)</span>
 
     <span class="n">list_of_clauses</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">for</span> <span class="n">disjunct</span> <span class="ow">in</span> <span class="n">disjuncts_list</span><span class="p">:</span>
-        <span class="n">list_of_clauses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ConjunctiveClause</span><span class="p">(</span><span class="o">*</span><span class="n">_find_conjuncts</span><span class="p">(</span><span class="n">disjunct</span><span class="o">.</span><span class="n">formula</span><span class="p">)))</span>
+        <span class="n">list_of_clauses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ConjunctiveClause</span><span class="p">(</span><span class="o">*</span><span class="n">_find_conjuncts</span><span class="p">(</span><span class="n">disjunct</span><span class="o">.</span><span class="n">_formula</span><span class="p">)))</span>
 
     <span class="k">return</span> <span class="n">list_of_clauses</span>
 </code></pre></div></td></tr></table></div>
@@ -1865,11 +1933,7 @@ rules to convert a formula to CNF</p>
 
             <details class="quote">
               <summary>Source code in <code>src\logicalpy\normal_forms.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">120</span>
-<span class="normal">121</span>
-<span class="normal">122</span>
-<span class="normal">123</span>
-<span class="normal">124</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">124</span>
 <span class="normal">125</span>
 <span class="normal">126</span>
 <span class="normal">127</span>
@@ -1889,7 +1953,11 @@ rules to convert a formula to CNF</p>
 <span class="normal">141</span>
 <span class="normal">142</span>
 <span class="normal">143</span>
-<span class="normal">144</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">to_cnf</span><span class="p">(</span><span class="n">formula</span><span class="p">:</span> <span class="n">Formula</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Formula</span><span class="p">:</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">to_cnf</span><span class="p">(</span><span class="n">formula</span><span class="p">:</span> <span class="n">Formula</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Formula</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts a formula to conjunctive normal form (CNF)</span>
 
 <span class="sd">    Args:</span>
@@ -1996,11 +2064,7 @@ rules to convert a formula to DNF</p>
 
             <details class="quote">
               <summary>Source code in <code>src\logicalpy\normal_forms.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">147</span>
-<span class="normal">148</span>
-<span class="normal">149</span>
-<span class="normal">150</span>
-<span class="normal">151</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">151</span>
 <span class="normal">152</span>
 <span class="normal">153</span>
 <span class="normal">154</span>
@@ -2020,7 +2084,11 @@ rules to convert a formula to DNF</p>
 <span class="normal">168</span>
 <span class="normal">169</span>
 <span class="normal">170</span>
-<span class="normal">171</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">to_dnf</span><span class="p">(</span><span class="n">formula</span><span class="p">:</span> <span class="n">Formula</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Formula</span><span class="p">:</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">to_dnf</span><span class="p">(</span><span class="n">formula</span><span class="p">:</span> <span class="n">Formula</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Formula</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts a formula to disjunctive normal form (DNF)</span>
 
 <span class="sd">    Args:</span>
@@ -2122,11 +2190,7 @@ all negations directly applied to propositions</p>
 
             <details class="quote">
               <summary>Source code in <code>src\logicalpy\normal_forms.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">102</span>
-<span class="normal">103</span>
-<span class="normal">104</span>
-<span class="normal">105</span>
-<span class="normal">106</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">106</span>
 <span class="normal">107</span>
 <span class="normal">108</span>
 <span class="normal">109</span>
@@ -2137,7 +2201,11 @@ all negations directly applied to propositions</p>
 <span class="normal">114</span>
 <span class="normal">115</span>
 <span class="normal">116</span>
-<span class="normal">117</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">to_nnf</span><span class="p">(</span><span class="n">formula</span><span class="p">:</span> <span class="n">Formula</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Formula</span><span class="p">:</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">to_nnf</span><span class="p">(</span><span class="n">formula</span><span class="p">:</span> <span class="n">Formula</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Formula</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts a formula to negation normal form (NNF), with no implications or bi-implications and</span>
 <span class="sd">    all negations directly applied to propositions</span>
 
@@ -2195,7 +2263,7 @@ all negations directly applied to propositions</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../base/" class="md-footer__link md-footer__link--prev" aria-label="Previous: base">
+          <a href="../hilbert/" class="md-footer__link md-footer__link--prev" aria-label="Previous: hilbert">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2205,7 +2273,7 @@ all negations directly applied to propositions</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                base
+                hilbert
               </div>
             </div>
           </a>

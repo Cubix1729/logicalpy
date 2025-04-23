@@ -503,6 +503,28 @@
   
   
     <li class="md-nav__item">
+      <a href="usage/hilbert-style-proof-system/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hilbert-Style Proof System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="usage/resolution-theorem-proving/" class="md-nav__link">
         
   
@@ -621,6 +643,28 @@
   
   <span class="md-ellipsis">
     base
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api-reference/logicalpy/hilbert/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hilbert
     
   </span>
   
@@ -812,9 +856,10 @@
 
 
 <h1 id="logicalpy">LogicalPy</h1>
-<p><a href="https://pypi.org/project/logicalpy"><img alt="PyPi version" src="https://badgen.net/pypi/v/logicalpy/" /></a>
+<p><a href="https://pypi.org/project/logicalpy"><img alt="PyPI version" src="https://badgen.net/pypi/v/logicalpy/" /></a>
 <a href="https://github.com/Cubix1729/logicalpy/blob/master/LICENSE"><img alt="License" src="https://img.shields.io/github/license/Cubix1729/logicalpy" /></a>
-<a href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg" /></a></p>
+<a href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg" /></a>
+<a href="https://pypi.python.org/pypi/logicalpy"><img alt="Python versions" src="https://img.shields.io/pypi/pyversions/logicalpy" /></a></p>
 <p>LogicalPy is a small Python library providing basic functionalities for manipulating propositional logic.</p>
 <h2 id="description">Description</h2>
 <p>The library allows to work with classical propositional logic formulae.
@@ -824,8 +869,10 @@ The main features include:</p>
 <li>The visualisation of truth tables</li>
 <li>The implementation of semantic notions: satisfiability, entailment...</li>
 <li>The conversion to normal forms (NNF, CNF, or DNF)</li>
+<li>The implementation of a Hilbert-style proof system</li>
 <li>Automated theorem proving with the resolution procedure</li>
 </ul>
+<p>The library also supports LaTex code generation for most of its functionalities.</p>
 <h2 id="installation">Installation</h2>
 <p>With pip:
 <div class="highlight"><pre><span></span><code>pip install logicalpy
@@ -838,7 +885,8 @@ The main features include:</p>
 <p>If you want to contribute to this (small) project, you can <a href="https://github.com/Cubix1729/logicalpy/issues">open an issue</a>
 to report a bug or request a feature, or <a href="https://github.com/Cubix1729/logicalpy/pulls">make a pull request</a>.</p>
 <h2 id="tests">Tests</h2>
-<p>To run the the tests, clone the repository, go into the <code>tests</code> directory and run <code>python -m unittest</code>.</p>
+<p>To run the the tests, first clone the repository, go into the <code>logicalpy</code> directory and locally install the project with <code>pip install -e .</code>
+Then, go into the <code>tests</code> directory and run <code>python -m unittest</code>.</p>
 <h2 id="license">License</h2>
 <p>This project is licensed under the MIT license.</p>
 

@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../semantic-functions/">
+        <link rel="prev" href="../normal-forms/">
       
       
-        <link rel="next" href="../hilbert-style-proof-system/">
+        <link rel="next" href="../resolution-theorem-proving/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Normal Forms - LogicalPy Docs</title>
+        <title>Hilbert-Style Proof System - LogicalPy Docs</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#normal-forms" class="md-skip">
+        <a href="#hilbert-style-proof-system" class="md-skip">
           Skip to content
         </a>
       
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Normal Forms
+              Hilbert-Style Proof System
             
           </span>
         </div>
@@ -385,6 +385,28 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../normal-forms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Normal Forms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -401,7 +423,7 @@
           
   
   <span class="md-ellipsis">
-    Normal Forms
+    Hilbert-Style Proof System
     
   </span>
   
@@ -413,7 +435,7 @@
         
   
   <span class="md-ellipsis">
-    Normal Forms
+    Hilbert-Style Proof System
     
   </span>
   
@@ -436,18 +458,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#cnf-and-dnf" class="md-nav__link">
+  <a href="#usage" class="md-nav__link">
     <span class="md-ellipsis">
-      CNF and DNF
+      Usage
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#clausal-representations-of-normal-forms" class="md-nav__link">
+  <a href="#creating-a-new-axiom-system" class="md-nav__link">
     <span class="md-ellipsis">
-      Clausal representations of normal forms
+      Creating a new axiom system
     </span>
   </a>
   
@@ -457,28 +479,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../hilbert-style-proof-system/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Hilbert-Style Proof System
-    
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -749,18 +749,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#cnf-and-dnf" class="md-nav__link">
+  <a href="#usage" class="md-nav__link">
     <span class="md-ellipsis">
-      CNF and DNF
+      Usage
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#clausal-representations-of-normal-forms" class="md-nav__link">
+  <a href="#creating-a-new-axiom-system" class="md-nav__link">
     <span class="md-ellipsis">
-      Clausal representations of normal forms
+      Creating a new axiom system
     </span>
   </a>
   
@@ -785,55 +785,108 @@
   
 
 
-<h1 id="normal-forms">Normal Forms</h1>
-<p>The conversion to normal forms is implemented in the <a href="../../api-reference/logicalpy/normal_forms/"><code>normal_forms</code></a> sub-module.</p>
-<h2 id="cnf-and-dnf">CNF and DNF</h2>
-<p>Formulae can be converted to CNF (Conjunctive Normal Form) or to DNF (Disjunctive Normal Form) with the <code>to_cnf()</code> and <code>to_dnf()</code> functions,
-which return an equivalent <code>Formula</code> in normal form.
-The normal forms found are not canonical forms. Instead of using truth tables, the functions use the following rewriting rules:</p>
-<ol>
-<li>
-<p>All conditionals and biconditionals are removed using the rules:</p>
-<div class="arithmatex">\[A \leftrightarrow B \equiv (A \to B) \land (B \to A)\]</div>
-<div class="arithmatex">\[A \to B \equiv \neg A \lor B\]</div>
-</li>
-<li>
-<p>Then negations are moved inwards, with De Morgan's laws:</p>
-<div class="arithmatex">\[\neg (A \lor B) \equiv \neg A \land \neg B\]</div>
-<div class="arithmatex">\[\neg (A \land B) \equiv \neg A \lor \neg B\]</div>
-<p>Double negations are removed:</p>
-<div class="arithmatex">\[\neg \neg A \equiv A\]</div>
-<p>And at this point, NNF (Negation Normal Form) is obtained. You can directly use the <code>to_nnf()</code> function to convert a formula to NNF.</p>
-</li>
-<li>
-<p>Finally:</p>
+<h1 id="hilbert-style-proof-system">Hilbert-Style Proof System</h1>
+<p>The interactive prover for Hilbert systems is implemented in the <a href="../../api-reference/logicalpy/hilbert/"><code>hilbert</code></a> sub-module.</p>
+<h2 id="usage">Usage</h2>
+<p>The class for Hilbert proofs is <code>HilbertProof</code>.
+Its constructor takes as its arguments the premises and the conclusion of the argument to prove, as well as the axiom system to use.
+The default axiom system used is Jan Łukasiewicz's third axiom system,
+called later P<span class="arithmatex">\(_2\)</span> by Alonzo Church, who popularised it.</p>
+<p>The axiom schemata are the following (indicated with Greek letters to differentiate them from simple formulae):</p>
 <ul>
-<li>If the desired form is CNF, we distribute disjunctions over conjunctions:</li>
-</ul>
-<div class="arithmatex">\[A \lor (B \land C) \equiv (A \lor B) \land (A \lor C)\]</div>
-<ul>
-<li>If the desired form is DNF, we distribute conjunctions over disjunctions:</li>
-</ul>
-<div class="arithmatex">\[A \land (B \lor C) \equiv (A \land B) \lor (A \land C)\]</div>
+<li>
+<p>A1: <span class="arithmatex">\(\phi \to (\psi \to \phi)\)</span></p>
 </li>
-</ol>
-<p>Example usage:</p>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">logicalpy</span> <span class="kn">import</span> <span class="n">Formula</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">logicalpy.normal_forms</span> <span class="kn">import</span> <span class="n">to_cnf</span><span class="p">,</span> <span class="n">to_dnf</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">fml</span> <span class="o">=</span> <span class="n">Formula</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="s2">&quot;~P -&gt; ~(Q v P)&quot;</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">to_dnf</span><span class="p">(</span><span class="n">fml</span><span class="p">))</span>
-<span class="n">P</span> <span class="err">∨</span> <span class="p">(</span><span class="err">¬</span><span class="n">Q</span> <span class="err">∧</span> <span class="err">¬</span><span class="n">P</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">to_cnf</span><span class="p">(</span><span class="n">fml</span><span class="p">))</span>
-<span class="p">(</span><span class="n">P</span> <span class="err">∨</span> <span class="err">¬</span><span class="n">Q</span><span class="p">)</span> <span class="err">∧</span> <span class="p">(</span><span class="n">P</span> <span class="err">∨</span> <span class="err">¬</span><span class="n">P</span><span class="p">)</span>
+<li>
+<p>A2: <span class="arithmatex">\((\phi \to (\psi \to \chi)) \to ((\phi \to \psi) \to (\phi \to \chi))\)</span></p>
+</li>
+<li>
+<p>A3: <span class="arithmatex">\((\neg \phi \to \neg \psi) \to (\psi \to \phi)\)</span></p>
+</li>
+</ul>
+<p>The inference rule used is Modus Ponens:</p>
+<div class="arithmatex">\[
+\frac{A, A \to B}{B}
+\]</div>
+<p>To add a line with one of the premises in the proof, use the <code>add_premise_line(premise)</code> method.
+If you want to add an instance of one of the axiom schemata, you can use the <code>add_axiom_instance(formula, axiom_name)</code> method.
+Finally, to apply Modus Ponens to two of the previous proof lines, use the <code>apply_modus_ponens(line_num_a, line_num_b)</code> method.</p>
+<p>Example interactive proof of <span class="arithmatex">\(A \to A\)</span>:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">logicalpy</span> <span class="kn">import</span> <span class="n">Formula</span><span class="p">,</span> <span class="n">Proposition</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">logicalpy.hilbert</span> <span class="kn">import</span> <span class="n">HilbertProof</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="n">Proposition</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">),</span> <span class="n">Proposition</span><span class="p">(</span><span class="s2">&quot;B&quot;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">p</span> <span class="o">=</span> <span class="n">HilbertProof</span><span class="p">(</span><span class="n">premises</span><span class="o">=</span><span class="p">[],</span> <span class="n">conclusion</span><span class="o">=</span><span class="n">Formula</span><span class="p">(</span><span class="n">A</span> <span class="o">&gt;&gt;</span> <span class="n">A</span><span class="p">))</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">p</span><span class="o">.</span><span class="n">add_axiom_instance</span><span class="p">(</span><span class="n">Formula</span><span class="p">(</span><span class="n">A</span> <span class="o">&gt;&gt;</span> <span class="p">((</span><span class="n">B</span> <span class="o">&gt;&gt;</span> <span class="n">A</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">A</span><span class="p">)),</span> <span class="s2">&quot;A1&quot;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="mf">1.</span> <span class="n">A</span> <span class="err">→</span> <span class="p">((</span><span class="n">B</span> <span class="err">→</span> <span class="n">A</span><span class="p">)</span> <span class="err">→</span> <span class="n">A</span><span class="p">)</span>                                        <span class="n">A1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">p</span><span class="o">.</span><span class="n">add_axiom_instance</span><span class="p">(</span><span class="n">Formula</span><span class="p">((</span><span class="n">A</span> <span class="o">&gt;&gt;</span> <span class="p">((</span><span class="n">B</span> <span class="o">&gt;&gt;</span> <span class="n">A</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">A</span><span class="p">))</span> <span class="o">&gt;&gt;</span> <span class="p">((</span><span class="n">A</span> <span class="o">&gt;&gt;</span> <span class="p">(</span><span class="n">B</span> <span class="o">&gt;&gt;</span> <span class="n">A</span><span class="p">))</span> <span class="o">&gt;&gt;</span> <span class="p">(</span><span class="n">A</span> <span class="o">&gt;&gt;</span> <span class="n">A</span><span class="p">))),</span> <span class="s2">&quot;A2&quot;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="mf">1.</span> <span class="n">A</span> <span class="err">→</span> <span class="p">((</span><span class="n">B</span> <span class="err">→</span> <span class="n">A</span><span class="p">)</span> <span class="err">→</span> <span class="n">A</span><span class="p">)</span>                                        <span class="n">A1</span>
+<span class="mf">2.</span> <span class="p">(</span><span class="n">A</span> <span class="err">→</span> <span class="p">((</span><span class="n">B</span> <span class="err">→</span> <span class="n">A</span><span class="p">)</span> <span class="err">→</span> <span class="n">A</span><span class="p">))</span> <span class="err">→</span> <span class="p">((</span><span class="n">A</span> <span class="err">→</span> <span class="p">(</span><span class="n">B</span> <span class="err">→</span> <span class="n">A</span><span class="p">))</span> <span class="err">→</span> <span class="p">(</span><span class="n">A</span> <span class="err">→</span> <span class="n">A</span><span class="p">))</span>          <span class="n">A2</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">p</span><span class="o">.</span><span class="n">apply_modus_ponens</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="mf">1.</span> <span class="n">A</span> <span class="err">→</span> <span class="p">((</span><span class="n">B</span> <span class="err">→</span> <span class="n">A</span><span class="p">)</span> <span class="err">→</span> <span class="n">A</span><span class="p">)</span>                                        <span class="n">A1</span>
+<span class="mf">2.</span> <span class="p">(</span><span class="n">A</span> <span class="err">→</span> <span class="p">((</span><span class="n">B</span> <span class="err">→</span> <span class="n">A</span><span class="p">)</span> <span class="err">→</span> <span class="n">A</span><span class="p">))</span> <span class="err">→</span> <span class="p">((</span><span class="n">A</span> <span class="err">→</span> <span class="p">(</span><span class="n">B</span> <span class="err">→</span> <span class="n">A</span><span class="p">))</span> <span class="err">→</span> <span class="p">(</span><span class="n">A</span> <span class="err">→</span> <span class="n">A</span><span class="p">))</span>          <span class="n">A2</span>
+<span class="mf">3.</span> <span class="p">(</span><span class="n">A</span> <span class="err">→</span> <span class="p">(</span><span class="n">B</span> <span class="err">→</span> <span class="n">A</span><span class="p">))</span> <span class="err">→</span> <span class="p">(</span><span class="n">A</span> <span class="err">→</span> <span class="n">A</span><span class="p">)</span>                                  <span class="n">MP</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">p</span><span class="o">.</span><span class="n">add_axiom_instance</span><span class="p">(</span><span class="n">Formula</span><span class="p">(</span><span class="n">A</span> <span class="o">&gt;&gt;</span> <span class="p">(</span><span class="n">B</span> <span class="o">&gt;&gt;</span> <span class="n">A</span><span class="p">)),</span> <span class="s2">&quot;A1&quot;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="mf">1.</span> <span class="n">A</span> <span class="err">→</span> <span class="p">((</span><span class="n">B</span> <span class="err">→</span> <span class="n">A</span><span class="p">)</span> <span class="err">→</span> <span class="n">A</span><span class="p">)</span>                                        <span class="n">A1</span>
+<span class="mf">2.</span> <span class="p">(</span><span class="n">A</span> <span class="err">→</span> <span class="p">((</span><span class="n">B</span> <span class="err">→</span> <span class="n">A</span><span class="p">)</span> <span class="err">→</span> <span class="n">A</span><span class="p">))</span> <span class="err">→</span> <span class="p">((</span><span class="n">A</span> <span class="err">→</span> <span class="p">(</span><span class="n">B</span> <span class="err">→</span> <span class="n">A</span><span class="p">))</span> <span class="err">→</span> <span class="p">(</span><span class="n">A</span> <span class="err">→</span> <span class="n">A</span><span class="p">))</span>          <span class="n">A2</span>
+<span class="mf">3.</span> <span class="p">(</span><span class="n">A</span> <span class="err">→</span> <span class="p">(</span><span class="n">B</span> <span class="err">→</span> <span class="n">A</span><span class="p">))</span> <span class="err">→</span> <span class="p">(</span><span class="n">A</span> <span class="err">→</span> <span class="n">A</span><span class="p">)</span>                                  <span class="n">MP</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span>
+<span class="mf">4.</span> <span class="n">A</span> <span class="err">→</span> <span class="p">(</span><span class="n">B</span> <span class="err">→</span> <span class="n">A</span><span class="p">)</span>                                              <span class="n">A1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">p</span><span class="o">.</span><span class="n">apply_modus_ponens</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="mf">1.</span> <span class="n">A</span> <span class="err">→</span> <span class="p">((</span><span class="n">B</span> <span class="err">→</span> <span class="n">A</span><span class="p">)</span> <span class="err">→</span> <span class="n">A</span><span class="p">)</span>                                        <span class="n">A1</span>
+<span class="mf">2.</span> <span class="p">(</span><span class="n">A</span> <span class="err">→</span> <span class="p">((</span><span class="n">B</span> <span class="err">→</span> <span class="n">A</span><span class="p">)</span> <span class="err">→</span> <span class="n">A</span><span class="p">))</span> <span class="err">→</span> <span class="p">((</span><span class="n">A</span> <span class="err">→</span> <span class="p">(</span><span class="n">B</span> <span class="err">→</span> <span class="n">A</span><span class="p">))</span> <span class="err">→</span> <span class="p">(</span><span class="n">A</span> <span class="err">→</span> <span class="n">A</span><span class="p">))</span>          <span class="n">A2</span>
+<span class="mf">3.</span> <span class="p">(</span><span class="n">A</span> <span class="err">→</span> <span class="p">(</span><span class="n">B</span> <span class="err">→</span> <span class="n">A</span><span class="p">))</span> <span class="err">→</span> <span class="p">(</span><span class="n">A</span> <span class="err">→</span> <span class="n">A</span><span class="p">)</span>                                  <span class="n">MP</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span>
+<span class="mf">4.</span> <span class="n">A</span> <span class="err">→</span> <span class="p">(</span><span class="n">B</span> <span class="err">→</span> <span class="n">A</span><span class="p">)</span>                                              <span class="n">A1</span>
+<span class="mf">5.</span> <span class="n">A</span> <span class="err">→</span> <span class="n">A</span>                                                    <span class="n">MP</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">to_latex</span><span class="p">())</span>
+\<span class="n">begin</span><span class="p">{</span><span class="nb">enumerate</span><span class="p">}</span>
+\<span class="n">item</span> <span class="err">$</span><span class="n">A</span> \<span class="n">to</span> <span class="p">((</span><span class="n">B</span> \<span class="n">to</span> <span class="n">A</span><span class="p">)</span> \<span class="n">to</span> <span class="n">A</span><span class="p">)</span><span class="err">$</span> <span class="n">by</span> <span class="n">A1</span>
+\<span class="n">item</span> <span class="err">$</span><span class="p">(</span><span class="n">A</span> \<span class="n">to</span> <span class="p">((</span><span class="n">B</span> \<span class="n">to</span> <span class="n">A</span><span class="p">)</span> \<span class="n">to</span> <span class="n">A</span><span class="p">))</span> \<span class="n">to</span> <span class="p">((</span><span class="n">A</span> \<span class="n">to</span> <span class="p">(</span><span class="n">B</span> \<span class="n">to</span> <span class="n">A</span><span class="p">))</span> \<span class="n">to</span> <span class="p">(</span><span class="n">A</span> \<span class="n">to</span> <span class="n">A</span><span class="p">))</span><span class="err">$</span> <span class="n">by</span> <span class="n">A2</span>
+\<span class="n">item</span> <span class="err">$</span><span class="p">(</span><span class="n">A</span> \<span class="n">to</span> <span class="p">(</span><span class="n">B</span> \<span class="n">to</span> <span class="n">A</span><span class="p">))</span> \<span class="n">to</span> <span class="p">(</span><span class="n">A</span> \<span class="n">to</span> <span class="n">A</span><span class="p">)</span><span class="err">$</span> <span class="n">by</span> <span class="n">MP</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span>
+\<span class="n">item</span> <span class="err">$</span><span class="n">A</span> \<span class="n">to</span> <span class="p">(</span><span class="n">B</span> \<span class="n">to</span> <span class="n">A</span><span class="p">)</span><span class="err">$</span> <span class="n">by</span> <span class="n">A1</span>
+\<span class="n">item</span> <span class="err">$</span><span class="n">A</span> \<span class="n">to</span> <span class="n">A</span><span class="err">$</span> <span class="n">by</span> <span class="n">MP</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span>
+\<span class="n">end</span><span class="p">{</span><span class="nb">enumerate</span><span class="p">}</span>
 </code></pre></div>
-<h2 id="clausal-representations-of-normal-forms">Clausal representations of normal forms</h2>
-<p>The <code>normal_forms</code> sub-module also contains classes representing conjunctive and disjunctive clauses.
-The CNF and DNF forms can be found in terms of clauses with the <code>to_clausal_cnf()</code> and <code>to_clausal_dnf()</code> functions.
-With <code>to_cnf()</code> and <code>to_dnf()</code>, the resulting normal forms are <code>Formula</code> instances, so disjunction and conjunction
-are represented as binary operators, but with <code>to_clausal_cnf()</code> and <code>to_clausal_dnf()</code>, the results are lists
-of clauses. Note that the resulting clauses aren't simplified.</p>
+<p>Like for truth tables, the LaTex generated is not supported by MathJax, as it uses the <code>enumerate</code> environnement.
+With a LaTex compiler, it would render like this:</p>
+<p><img alt="LaTex Rendering" src="../hilbert_style_proof_example.svg" style="height:180px;width:578px" /></p>
+<h2 id="creating-a-new-axiom-system">Creating a new axiom system</h2>
+<p>In order to use an axiom system that is not the default one, you will need to create it.
+An axiom system consists in LogicalPy of a <code>dict</code> mapping each axiom schema name (<code>str</code>) to its <code>Formula</code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Formulae given to create an axiom system will be treated as axiom schemata.</p>
+</div>
+<p>As an example, we will define Frege's axiom system.
+Here are the axiom schemata:</p>
+<ul>
+<li><span class="arithmatex">\(\phi \to (\psi \to \phi)\)</span></li>
+<li><span class="arithmatex">\((\phi \to (\psi \to \chi)) \to ((\phi \to \psi) \to (\psi \to \chi))\)</span></li>
+<li><span class="arithmatex">\((\phi \to (\psi \to \chi)) \to (\psi \to (\phi \to \chi))\)</span></li>
+<li><span class="arithmatex">\((\phi \to \psi) \to (\neg \psi \to \neg \phi)\)</span></li>
+<li><span class="arithmatex">\(\neg \neg \phi \to \phi\)</span></li>
+<li><span class="arithmatex">\(\phi \to \neg \neg \phi\)</span></li>
+</ul>
+<p>In the Python implementation, we will name them A1, A2, A3 and so on up to A6.</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">logicalpy</span> <span class="kn">import</span> <span class="n">Formula</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">frege_axiom_system</span> <span class="o">=</span> <span class="p">{</span>
+<span class="o">...</span>    <span class="s2">&quot;A1&quot;</span><span class="p">:</span> <span class="n">Formula</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="s2">&quot;A -&gt; (B -&gt; A)&quot;</span><span class="p">),</span>
+<span class="o">...</span>    <span class="s2">&quot;A2&quot;</span><span class="p">:</span> <span class="n">Formula</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="s2">&quot;(A -&gt; (B -&gt; C)) -&gt; ((A -&gt; B) -&gt; (A -&gt; C))&quot;</span><span class="p">),</span>
+<span class="o">...</span>    <span class="s2">&quot;A3&quot;</span><span class="p">:</span> <span class="n">Formula</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="s2">&quot;(A -&gt; (B -&gt; C)) -&gt; (B -&gt; (A -&gt; C))&quot;</span><span class="p">),</span>
+<span class="o">...</span>    <span class="s2">&quot;A4&quot;</span><span class="p">:</span> <span class="n">Formula</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="s2">&quot;(A -&gt; B) -&gt; (~B -&gt; ~A)&quot;</span><span class="p">),</span>
+<span class="o">...</span>    <span class="s2">&quot;A5&quot;</span><span class="p">:</span> <span class="n">Formula</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="s2">&quot;~~A -&gt; A&quot;</span><span class="p">),</span>
+<span class="o">...</span>    <span class="s2">&quot;A6&quot;</span><span class="p">:</span> <span class="n">Formula</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="s2">&quot;A -&gt; ~~A&quot;</span><span class="p">),</span>
+<span class="o">...</span><span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">logicalpy.hilbert</span> <span class="kn">import</span> <span class="n">HilbertProof</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># Then you can use the system to make a proof</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># if you precise axiom_system=frege_axiom_system</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># when constructing the HilbertProof</span>
+</code></pre></div>
 <p><br></p>
-<p>For a complete reference of the <code>normal_forms</code> sub-module, see the <a href="../../api-reference/logicalpy/normal_forms/">corresponding API reference</a>.</p>
+<p>For a complete reference of the <code>hilbert</code> sub-module, see the <a href="../../api-reference/logicalpy/hilbert/">corresponding API reference</a>.</p>
 
 
 
@@ -863,7 +916,7 @@ of clauses. Note that the resulting clauses aren't simplified.</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../semantic-functions/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Semantic Functions">
+          <a href="../normal-forms/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Normal Forms">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -873,20 +926,20 @@ of clauses. Note that the resulting clauses aren't simplified.</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                Semantic Functions
+                Normal Forms
               </div>
             </div>
           </a>
         
         
           
-          <a href="../hilbert-style-proof-system/" class="md-footer__link md-footer__link--next" aria-label="Next: Hilbert-Style Proof System">
+          <a href="../resolution-theorem-proving/" class="md-footer__link md-footer__link--next" aria-label="Next: Resolution Theorem Proving">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Hilbert-Style Proof System
+                Resolution Theorem Proving
               </div>
             </div>
             <div class="md-footer__button md-icon">
