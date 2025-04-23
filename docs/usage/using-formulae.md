@@ -7,8 +7,8 @@ Example:
 
 ```python
 >>> from logicalpy import Formula
->>> test_formula = Formula.from_string("(P -> (~P & P)) v Q")
->>> print(test_formula.to_latex())
+>>> fml = Formula.from_string("(P -> (~P & P)) v Q")
+>>> print(fml.to_latex())
 $(P \to (\neg P \land P)) \lor Q$
 ```
 
@@ -21,8 +21,8 @@ the `propositions()` method of the `Formula` class:
 
 ```python
 >>> from logicalpy import Formula
->>> test_formula = Formula.from_string("P -> Q")
->>> test_formula.propositions()
+>>> fml = Formula.from_string("P -> Q")
+>>> fml.propositions()
 {'P', 'Q'}
 ```
 
@@ -35,13 +35,13 @@ Example:
 
 ```python
 >>> from logicalpy import Formula
->>> test_formula = Formula.from_string("P & Q")
->>> test_formula.is_satisfied({"P": True, "Q": False})
+>>> fml = Formula.from_string("P & Q")
+>>> fml.is_satisfied({"P": True, "Q": False})
 False
->>> test_formula.is_satisfied({"P": True, "Q": True})
+>>> fml.is_satisfied({"P": True, "Q": True})
 True
 ```
 
 <br>
 
-For a complete reference of the `Formula` class, see the [API reference](../api-reference/logicalpy/base.md#logicalpy.base.Formula).
+For a complete reference of the `Formula` class, see its [API reference](../api-reference/logicalpy/base.md#logicalpy.base.Formula).
