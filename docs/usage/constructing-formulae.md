@@ -16,6 +16,8 @@ The connectives are as follow:
 |Implication|`->`, `→` or `⇒`|
 |Bi-implication|`<->`, `↔` or `⇔`|
 
+Example:
+
 ```python
 from logicalpy import Formula
 

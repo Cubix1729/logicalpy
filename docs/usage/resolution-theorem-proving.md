@@ -1,7 +1,7 @@
 # Resolution Theorem Proving
 
 The [`resolution`](../api-reference/logicalpy/normal_forms.md) sub-module can be used for propositional
-resolution proving.
+resolution theorem proving.
 
 ## Usage
 

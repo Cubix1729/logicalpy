@@ -1,8 +1,9 @@
 # LogicalPy
 
-[![PyPi version](https://badgen.net/pypi/v/logicalpy/)](https://pypi.org/project/logicalpy)
+[![PyPI version](https://img.shields.io/pypi/v/logicalpy)](https://pypi.org/project/logicalpy)
 [![License](https://img.shields.io/github/license/Cubix1729/logicalpy)](https://github.com/Cubix1729/logicalpy/blob/master/LICENSE)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Python versions](https://img.shields.io/pypi/pyversions/logicalpy)](https://pypi.python.org/pypi/logicalpy)
 
 LogicalPy is a Python library providing basic functionalities for manipulating propositional logic.
 
@@ -15,7 +16,10 @@ The main features include:
  - The visualisation of truth tables
  - The implementation of semantic notions: satisfiability, entailment...
  - The conversion to normal forms (NNF, CNF, or DNF)
+ - The implementation of a Hilbert-style proof system
  - Automated theorem proving with the resolution procedure
+
+The library also supports LaTex code generation for most of its functionalities.
 
 For the complete documentation, see [https://cubix1729.github.io/logicalpy/](https://cubix1729.github.io/logicalpy/).
 
@@ -35,7 +39,8 @@ to report a bug or request a feature, or [make a pull request](https://github.co
 
 ## Tests
 
-To run the the tests, clone the repository, go into the `tests` directory and run `python -m unittest`.
+To run the the tests, first clone the repository, go into the `logicalpy` directory and locally install the project with `pip install -e .`
+Then, go into the `tests` directory and run `python -m unittest`.
 
 ## License
 
