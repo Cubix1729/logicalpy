@@ -198,10 +198,10 @@ class HilbertProof:
         return "\n".join(result_lines)
 
     def to_latex(self) -> str:
-        """Renders the proof to LaTex
+        """Renders the proof to LaTeX
 
         Returns:
-            (str): the LaTex representation of the proof, which uses the `enumerate` environnement
+            (str): the LaTeX representation of the proof, which uses the `enumerate` environnement
 
         """
         result_lines = [r"\begin{enumerate}"]

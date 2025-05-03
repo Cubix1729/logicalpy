@@ -19,7 +19,7 @@ The main features include:
  - The implementation of a Hilbert-style proof system
  - Automated theorem proving with the resolution procedure
 
-The library also supports LaTex code generation for most of its functionalities.
+The library also supports LaTeX code generation for most of its functionalities.
 
 For the complete documentation, see [https://cubix1729.github.io/logicalpy/](https://cubix1729.github.io/logicalpy/).
 

@@ -399,10 +399,10 @@ class Formula:
         return hash(str(self))
 
     def to_latex(self) -> str:
-        """Renders the formula as LaTex code
+        """Renders the formula as LaTeX code
 
         Returns:
-            (str): the LaTex representation of the formula, as inline math
+            (str): the LaTeX representation of the formula, as inline math
 
         """
         formula_latex = self._formula.to_latex()

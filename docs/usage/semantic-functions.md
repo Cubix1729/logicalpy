@@ -6,7 +6,7 @@ Semantics functions are contained in the [`semantics`](../api-reference/logicalp
 
 Truth tables can be built using the `TruthTable` class. Then, the string representation of the truth table
 can be found with the `to_str` method (or directly with the `str` built-in constructor).
-You can also use the `to_latex()` or `to_markdown()` methods to render the truth table to LaTex or Markdown.
+You can also use the `to_latex()` or `to_markdown()` methods to render the truth table to LaTeX or Markdown.
 
 Example:
 
@@ -51,10 +51,10 @@ The above Markdown renders as follow:
 
 !!! note
 
-    The LaTex code generated for a truth table uses the `tabular` environment, and it cannot be rendered using MathJax, but only
-    using a pure LaTex compiler. Here is how the above LaTex code generated would render:
+    The LaTeX code generated for a truth table uses the `tabular` environment, and it cannot be rendered using MathJax, but only
+    using a pure LaTeX compiler. Here is how the above LaTeX code generated would render:
 
-    ![LaTex rendering](./truth_table_latex_example.svg){: style="height:122px;width:238px"}
+    ![LaTeX rendering](./truth_table_latex_example.svg){: style="height:122px;width:238px"}
     <!---I doubled the dimentions of the image (w=119 and h=61) -->
 
 

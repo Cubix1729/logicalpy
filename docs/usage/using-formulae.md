@@ -1,8 +1,8 @@
 # Using Formulae
 
-## Latex Rendering
+## LaTeX Rendering
 
-Formulae can be rendered as LaTex code, with the `to_latex()` method of `Formula` objects.
+Formulae can be rendered as LaTeX code, with the `to_latex()` method of `Formula` objects.
 Example:
 
 ```python
@@ -12,7 +12,7 @@ Example:
 $(P \to (\neg P \land P)) \lor Q$
 ```
 
-The above LaTex would render as follow: $(P \to (\neg P \land P)) \lor Q$
+The above LaTeX would render as follow: $(P \to (\neg P \land P)) \lor Q$
 
 ## Equality testing
 

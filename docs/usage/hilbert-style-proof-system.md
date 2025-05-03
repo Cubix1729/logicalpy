@@ -69,10 +69,10 @@ Example interactive proof of $A \to A$:
 \end{enumerate}
 ```
 
-Like for truth tables, the LaTex generated is not supported by MathJax, as it uses the `enumerate` environnement.
-With a LaTex compiler, it would render like this:
+Like for truth tables, the LaTeX generated is not supported by MathJax, as it uses the `enumerate` environnement.
+With a LaTeX compiler, it would render like this:
 
-![LaTex Rendering](./hilbert_style_proof_example.svg){: style="height:180px;width:578px"}
+![LaTeX Rendering](./hilbert_style_proof_example.svg){: style="height:180px;width:578px"}
 
 ## Creating a new axiom system
 

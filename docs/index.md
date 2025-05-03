@@ -19,7 +19,7 @@ The main features include:
  - The implementation of a Hilbert-style proof system
  - Automated theorem proving with the resolution procedure
 
-The library also supports LaTex code generation for most of its functionalities.
+The library also supports LaTeX code generation for most of its functionalities.
 
 ## Installation
 

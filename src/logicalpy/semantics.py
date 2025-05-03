@@ -24,7 +24,7 @@ class TruthTable:
         self._latex_table = None
 
     def to_str(self) -> str:
-        """Renders the truth table as a str with the `tabulate` library (style used: 'simple')
+        """Renders the truth table as a str using the `tabulate` library (style used: 'simple')
 
         Returns:
             (str): the truth table
@@ -112,10 +112,10 @@ class TruthTable:
         return self._str_table
 
     def to_latex(self) -> str:
-        """Renders the truth table as LaTex (with the `tabulate` library)
+        """Renders the truth table as LaTeX (with the `tabulate` library)
 
         Returns:
-            (str): the LaTex output, which uses the `tabular` LaTex environment
+            (str): the LaTeX output, which uses the `tabular` LaTeX environment
 
         """
         if self._latex_table is not None:
