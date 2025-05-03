@@ -394,7 +394,7 @@
         <li class="md-nav__item">
   <a href="#latex-rendering" class="md-nav__link">
     <span class="md-ellipsis">
-      Latex Rendering
+      LaTeX Rendering
     </span>
   </a>
   
@@ -769,7 +769,7 @@
         <li class="md-nav__item">
   <a href="#latex-rendering" class="md-nav__link">
     <span class="md-ellipsis">
-      Latex Rendering
+      LaTeX Rendering
     </span>
   </a>
   
@@ -822,15 +822,15 @@
 
 
 <h1 id="using-formulae">Using Formulae</h1>
-<h2 id="latex-rendering">Latex Rendering</h2>
-<p>Formulae can be rendered as LaTex code, with the <code>to_latex()</code> method of <code>Formula</code> objects.
+<h2 id="latex-rendering">LaTeX Rendering</h2>
+<p>Formulae can be rendered as LaTeX code, with the <code>to_latex()</code> method of <code>Formula</code> objects.
 Example:</p>
 <div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">logicalpy</span> <span class="kn">import</span> <span class="n">Formula</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">fml</span> <span class="o">=</span> <span class="n">Formula</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="s2">&quot;(P -&gt; (~P &amp; P)) v Q&quot;</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">fml</span><span class="o">.</span><span class="n">to_latex</span><span class="p">())</span>
 <span class="err">$</span><span class="p">(</span><span class="n">P</span> \<span class="n">to</span> <span class="p">(</span>\<span class="n">neg</span> <span class="n">P</span> \<span class="n">land</span> <span class="n">P</span><span class="p">))</span> \<span class="n">lor</span> <span class="n">Q</span><span class="err">$</span>
 </code></pre></div>
-<p>The above LaTex would render as follow: <span class="arithmatex">\((P \to (\neg P \land P)) \lor Q\)</span></p>
+<p>The above LaTeX would render as follow: <span class="arithmatex">\((P \to (\neg P \land P)) \lor Q\)</span></p>
 <h2 id="equality-testing">Equality testing</h2>
 <p>Two formulae can be tested for equality with the normal Python equality testing syntax.
 Example:</p>
