@@ -1,0 +1,14 @@
+[run]
+branch = True
+dynamic_context = test_function
+; track which test functions executed which parts of the code
+
+[report]
+exclude_also = 
+    if __name__ == .__main__.:
+    ; tests aren't directly run
+
+skip_empty = True
+
+[html]
+show_contexts = True
