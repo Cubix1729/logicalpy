@@ -20,9 +20,9 @@ cd logicalpy
 In order to contribute to the project, you will need to install it locally.
 
  - You can first optionally create a virtual environment
- - Then, locally install the project in editable mode with:
+ - Then, locally install the project in editable mode and with all of the development dependencies using:
     ```
-    pip install -e .
+    pip install -e .[dev]
     ```
 
 ### 3. Make and commit your changes
@@ -41,6 +41,13 @@ as well as any relevant context.
 Your pull request will then be reviewed, and once it has been approved, it will be
 merged to the main project 🎉.
 
+## Project dependencies
+
+The project uses:
+
+ - `lark` for parsing logical formulae
+ - `tabulate` for making truth tables
+
 ## Code style and testing guidelines
 
 To meet the project's code style, please format the code with `black` using the command
@@ -48,7 +55,7 @@ To meet the project's code style, please format the code with `black` using the 
 characters).
 
 If you implement any new feature or change an existing one, please update the tests in
-consequence.
+consequence. They are written with the `unittest` library of the Python standard library.
 
 For any modification you make, ensure the tests still pass by running (from the main folder
 or from the `tests` folder):
@@ -56,6 +63,18 @@ or from the `tests` folder):
 ```
 python -m unittest
 ```
+
+The project uses `coverage` to generate test coverage reports. The coverage badge present in both
+the README.md and the documentation homepage is then generated with the `coverage-badge`
+Python package.
+
+## Documentation changes
+
+The documentation is written in Markdown and built using `mkdocs` (more precisely with `mkdocs-material`).
+The `mkdocs` documentation configuration is in the file `mkdocs.yml`.
+
+If you make changes to the documentation, you can use `mkdocs serve` to build the documentation locally and
+view it your browser at [http://127.0.0.1:8000/](http://127.0.0.1:8000/).
 
 ## Opening an issue
 

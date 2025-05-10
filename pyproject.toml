@@ -31,3 +31,12 @@ classifiers = [
 [project.urls]
 Homepage = "https://github.com/Cubix1729/logicalpy"
 Documentation = "https://cubix1729.github.io/logicalpy/"
+
+[project.optional-dependencies]
+dev = [
+    "black>=25.1.0",
+    "mkdocs>=1.6.1",
+    "mkdocs-material>=9.6.13",
+    "coverage>=7.8.0",
+    "coverage-badge>=1.1.2"
+]
