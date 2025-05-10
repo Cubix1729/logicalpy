@@ -34,13 +34,9 @@ Note that the library needs a Python version higher than 3.9.
 
 ## Contributing
 
-If you want to contribute to this (small) project, you can [open an issue](https://github.com/Cubix1729/logicalpy/issues)
-to report a bug or request a feature, or [make a pull request](https://github.com/Cubix1729/logicalpy/pulls).
-
-## Tests
-
-To run the the tests, first clone the repository, go into the `logicalpy` directory and locally install the project with `pip install -e .`
-Then, go into the `tests` directory and run `python -m unittest`.
+If you want to contribute to this project, you can open an issue to report a bug or request a feature,
+or make a pull request.
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed contribution guidelines.
 
 ## License
 
