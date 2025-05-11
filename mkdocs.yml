@@ -66,3 +66,6 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.arithmatex:
       generic: true
+
+watch:
+  - src/logicalpy  # re-build the documentation whenever a file in this directory is changed
