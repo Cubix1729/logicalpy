@@ -189,9 +189,7 @@ def _find_conjuncts(formula) -> list:
         return [Formula(formula)]
 
 
-def to_clausal_cnf(
-    formula: Formula,
-) -> list[DisjunctiveClause]:
+def to_clausal_cnf(formula: Formula) -> list[DisjunctiveClause]:
     """Converts a formula to conjunctive normal form (CNF) like `to_cnf`, but as a list of disjunctive clauses
 
     Args:
@@ -215,9 +213,7 @@ def to_clausal_cnf(
     return list_of_clauses
 
 
-def to_clausal_dnf(
-    formula: Formula,
-) -> list[ConjunctiveClause]:
+def to_clausal_dnf(formula: Formula) -> list[ConjunctiveClause]:
     """Converts a formula to disjunctive normal form (DNF) like `to_dnf`, but as a list of conjunctive clauses
 
     Args:

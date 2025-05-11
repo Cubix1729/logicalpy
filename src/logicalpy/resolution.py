@@ -74,18 +74,14 @@ def resolve(
                 return DisjunctiveClause(*resulting_literals)
 
 
-def _is_tautology(
-    clause: DisjunctiveClause,
-) -> bool:
+def _is_tautology(clause: DisjunctiveClause) -> bool:
     for literal_1, literal_2 in combinations(clause, 2):
         if are_complementary_literals(literal_1, literal_2):
             return True
     return False
 
 
-def _remove_redundancy(
-    clause: DisjunctiveClause,
-) -> DisjunctiveClause:
+def _remove_redundancy(clause: DisjunctiveClause) -> DisjunctiveClause:
     all_literals = []
     for literal in clause:
         if literal not in all_literals:
@@ -103,11 +99,7 @@ class ResolutionProver:
 
     """
 
-    def __init__(
-        self,
-        premises: Iterable[Formula],
-        conclusion: Formula,
-    ):
+    def __init__(self, premises: Iterable[Formula], conclusion: Formula):
         """The prover's constructor
 
         Args:
@@ -150,9 +142,7 @@ class ResolutionProver:
         self._refutation_found = False
         self._terminated_without_refutation = False
 
-    def _apply_resolution(
-        self,
-    ) -> Optional[tuple[DisjunctiveClause, int, int]]:
+    def _apply_resolution(self) -> Optional[tuple[DisjunctiveClause, int, int]]:
         """Resolves two clauses if possible and changes `all_clauses` in consideration. The clauses that were resolved are removed, and the resolvent is added.
 
         Returns:

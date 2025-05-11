@@ -24,9 +24,7 @@ The axiom schemata are the following:
 """
 
 
-def _make_regex_from_formula(
-    formula: Formula,
-) -> str:
+def _make_regex_from_formula(formula: Formula) -> str:
     formula_props = formula.propositions()
     formula_str = str(formula)
     formula_str = formula_str.replace("(", r"\(").replace(")", r"\)")

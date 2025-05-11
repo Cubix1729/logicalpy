@@ -242,9 +242,7 @@ def are_equivalent(formula_1: Formula, formula_2: Formula) -> bool:
     return True
 
 
-def are_jointly_satisfiable(
-    *formulae: Formula,
-) -> bool:
+def are_jointly_satisfiable(*formulae: Formula) -> bool:
     """Tests whether several formulae are jointly satisfiable
 
     Args:
@@ -273,9 +271,7 @@ def are_jointly_satisfiable(
     return False
 
 
-def one_satisfying_valuation(
-    formula: Formula,
-) -> Optional[dict[str, bool]]:
+def one_satisfying_valuation(formula: Formula) -> Optional[dict[str, bool]]:
     """Returns one valuation that satisfies the formula given
 
     Args:
@@ -299,9 +295,7 @@ def one_satisfying_valuation(
     return None
 
 
-def all_satisfying_valuations(
-    formula: Formula,
-) -> list[dict[str, bool]]:
+def all_satisfying_valuations(formula: Formula) -> list[dict[str, bool]]:
     """Returns all the valuations that satisfy the formula given
 
     Args:
@@ -328,10 +322,7 @@ def all_satisfying_valuations(
     return satisfying_valuations
 
 
-def is_valid_argument(
-    premises: Iterable[Formula],
-    conclusion: Formula,
-) -> bool:
+def is_valid_argument(premises: Iterable[Formula], conclusion: Formula) -> bool:
     """Tests whether an argument is (semantically) valid, i.e. whether the premises given entail the conclusion given
 
     Args:

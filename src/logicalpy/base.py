@@ -9,8 +9,8 @@ class Proposition:
     """
 
     def __init__(self, name: str):
-        if name == "":
-            raise ValueError("a proposition name cannot be ''")
+        if name.strip() == "":
+            raise ValueError("proposition name cannot be empty")
         self.name = name
 
     def __str__(self) -> str:
