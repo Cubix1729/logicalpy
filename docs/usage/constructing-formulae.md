@@ -1,6 +1,6 @@
 # Constructing Formulae with LogicalPy
 
-With LogicalPy, propositional formulae (class [`Formula`](../api-reference/logicalpy/base.md#logicalpy.base.Formula)) can be constructed in three different ways:
+With LogicalPy, propositional formulae (class [`Formula`](../api-reference/logicalpy/core.md#logicalpy.core.Formula)) can be constructed in three different ways:
 
 ## Using the formula parser
 

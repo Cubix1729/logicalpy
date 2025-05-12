@@ -28,7 +28,7 @@ True
 ```
 
 !!! note
-    This only tests if the propositions are ***exactly*** the same.
+    This only tests if the propositions are ***exactly*** equal.
     For instance, two semantically equivalent formulae but with different structures will not
     be considered equal.
     Likewise, formulae with the same structure but with different proposition
@@ -64,4 +64,4 @@ True
 
 <br>
 
-For a complete reference of the `Formula` class, see its [API reference](../api-reference/logicalpy/base.md#logicalpy.base.Formula).
+For a complete reference of the `Formula` class, see its [API reference](../api-reference/logicalpy/core.md#logicalpy.core.Formula).

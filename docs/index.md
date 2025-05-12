@@ -6,7 +6,7 @@
 [![Python versions](https://img.shields.io/pypi/pyversions/logicalpy)](https://pypi.python.org/pypi/logicalpy)
 [![Test coverage](./coverage-badge.svg)](https://github.com/Cubix1729/logicalpy/tree/master/tests)
 
-LogicalPy is a small Python library providing basic functionalities for manipulating propositional logic.
+LogicalPy is a Python library providing basic functionalities for manipulating propositional logic.
 
 ## Description
 
