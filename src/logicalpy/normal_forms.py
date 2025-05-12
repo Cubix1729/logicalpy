@@ -1,4 +1,4 @@
-from .base import Formula, Or, And
+from .core import Formula, Or, And
 
 
 class DisjunctiveClause:

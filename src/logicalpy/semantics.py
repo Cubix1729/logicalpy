@@ -2,7 +2,7 @@ from typing import Optional, Iterable
 from itertools import product
 import re
 from tabulate import tabulate
-from .base import Formula
+from .core import Formula
 
 
 class TruthTable:

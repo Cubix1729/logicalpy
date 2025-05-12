@@ -1,4 +1,4 @@
-from .base import Formula
+from .core import Formula
 from typing import Iterable
 import re
 
