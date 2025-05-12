@@ -201,7 +201,6 @@ class ResolutionProver:
 
         """
 
-        proof_finished = False
         proof_str = "Resolution proof for argument {0} ∴ {1}\n\n".format(
             ", ".join([str(premise) for premise in self.premises]),
             str(self.conclusion),
