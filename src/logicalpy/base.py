@@ -71,7 +71,7 @@ class Not:
 
     """
 
-    def __init__(self, a):
+    def __init__(self, a, /):
         self.a = a
 
     def __str__(self) -> str:
@@ -136,7 +136,7 @@ class _TwoPlaceConnective:
     CONNECTIVE_SYMBOL = None  # not defined in the base class
     LATEX_SYMBOL = None  # same
 
-    def __init__(self, a, b):
+    def __init__(self, a, b, /):
         self.a = a
         self.b = b
 
@@ -370,7 +370,7 @@ class Formula:
 
     """
 
-    def __init__(self, formula):
+    def __init__(self, formula, /):
         """The formula's constructor
 
         Args:
